@@ -1,3 +1,4 @@
 {
-  "name": "Joy"
+  "name": "Joy",
+  "STATIC_FILES": "./client/build/index.html"
 }
