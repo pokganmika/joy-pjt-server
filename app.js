@@ -14,6 +14,7 @@ var app = express();
 console.log(
   `[+] NODE_ENV = ${process.env.NODE_ENV}, PORT = ${config.get('port')}`
 );
+console.log(`[+] STATIC_FILES = ${config.get('STATIC_FILES')}`);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,7 +34,7 @@ app.use('/users', usersRouter);
 
 // Anything that doesn't match the above, send back index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+  res.sendFile(path.join(__dirname, config.get('')));
 });
 
 // catch 404 and forward to error handler
