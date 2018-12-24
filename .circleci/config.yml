@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     environment:
-      SERVER_IP_ADDRESS: http://52.79.211.21
+      SERVER_IP_ADDRESS: 52.79.211.21
       DOKKU_APP: joy
       TRAVIS: 'false'
     branches:
