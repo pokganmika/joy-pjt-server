@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "mocha app.test.js"
   },
   "dependencies": {
     "config": "^3.0.1",
@@ -16,6 +17,11 @@
     "morgan": "~1.9.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "casperjs": "^1.1.4",
+    "nodemon": "^1.18.9",
+    "phantomjs": "^2.1.7",
+    "youtube-node": "^1.3.2"
   }
 }
