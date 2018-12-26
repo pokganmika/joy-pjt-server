@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'comment',
+    'hashtag',
     {
-      comment: { type: DataTypes.STRING(255), allowNull: true }
+      title: { type: DataTypes.STRING(255), allowNull: false, unique: true }
     },
     {
       timestamp: true,

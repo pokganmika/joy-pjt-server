@@ -74,3 +74,14 @@ CREATE TABLE joy.lectures (
 
 -- insert lectures
 INSERT INTO joy.lectures (instructor, title, url, free) VALUES ('nicolas', '[초보자 전용 풀스택] 유튜브 클론 코딩', 'https://academy.nomadcoders.co/p/javascript-fullstack-from-zero-to-hero', false);
+
+SET foreign_key_checks = 0;
+DROP TABLE comments;
+DROP TABLE CourseLecture;
+DROP TABLE courses;
+DROP TABLE hashtags;
+DROP TABLE instructors;
+DROP TABLE LectureHashtag;
+DROP TABLE lectures;
+DROP TABLE users;
+SET foreign_key_checks = 1;
