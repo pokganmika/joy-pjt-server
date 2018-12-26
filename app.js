@@ -29,8 +29,6 @@ console.log(
 );
 console.log(`[+] STATIC_FILES = ${config.get('STATIC_FILES')}`);
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -50,7 +48,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(express.static(path.join(__dirname, config.get('STATIC_FILES'))));
-// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', pageRouter);
 app.use('/auth', authRouter);
