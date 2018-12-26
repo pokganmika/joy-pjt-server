@@ -39,21 +39,25 @@ db.Lecture.belongsTo(db.Instructor);
 db.User.hasMany(db.Course);
 db.Course.belongsTo(db.User);
 
-// comment : { lecture, instructor, course }  = 1 : 1
-db.Comment.hasOne(db.Lecture);
-db.Lecture.belongsTo(db.Comment);
-db.Comment.hasOne(db.Instructor);
-db.Instructor.belongsTo(db.Comment);
-db.Comment.hasOne(db.Course);
-db.Course.belongsTo(db.Comment);
-
-// lecture : hashtag = N : M
+// hashtag = { lecture, instructor, course }= N : M
 db.Lecture.belongsToMany(db.Hashtag, { through: 'LectureHashtag' });
 db.Hashtag.belongsToMany(db.Lecture, { through: 'LectureHashtag' });
+db.Instructor.belongsToMany(db.Hashtag, { through: 'InstructorHashtag' });
+db.Hashtag.belongsToMany(db.Instructor, { through: 'InstructorHashtag' });
+db.Course.belongsToMany(db.Hashtag, { through: 'CourseHashtag' });
+db.Hashtag.belongsToMany(db.Course, { through: 'CourseHashtag' });
 
 // course : lecture = N : M
 db.Course.belongsToMany(db.Lecture, { through: 'CourseLecture' });
 db.Lecture.belongsToMany(db.Course, { through: 'CourseLecture' });
+
+// comment : { lecture, instructor, course }  = N : M
+db.Comment.belongsToMany(db.Lecture, { through: 'CommentLecture' });
+db.Lecture.belongsToMany(db.Comment, { through: 'CommentLecture' });
+db.Comment.belongsToMany(db.Instructor, { through: 'CommentInstructor' });
+db.Instructor.belongsToMany(db.Comment, { through: 'CommentInstructor' });
+db.Comment.belongsToMany(db.Course, { through: 'CommentCourse' });
+db.Course.belongsToMany(db.Comment, { through: 'CommentCourse' });
 
 /*
 db.User.hasMany(db.Comment, {
