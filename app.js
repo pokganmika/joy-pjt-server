@@ -26,10 +26,10 @@ console.log(`[+] STATIC_FILES = ${config.get('STATIC_FILES')}`);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   expressSession({
-    secret: 'j@y sess@n secret',
+    secret: process.env.COOKIE_SECRET,
     resave: true,
     saveUninitialized: true
   })
