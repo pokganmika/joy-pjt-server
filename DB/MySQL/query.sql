@@ -68,20 +68,22 @@ CREATE TABLE joy.lectures (
   ENGINE=InnoDB;
 
 
-
-
-
-
 -- insert lectures
 INSERT INTO joy.lectures (instructor, title, url, free) VALUES ('nicolas', '[초보자 전용 풀스택] 유튜브 클론 코딩', 'https://academy.nomadcoders.co/p/javascript-fullstack-from-zero-to-hero', false);
 
+/* drop all tables */
 SET foreign_key_checks = 0;
+DROP TABLE CommentCourse;
+DROP TABLE CommentInstructor;
+DROP TABLE CommentLecture;
 DROP TABLE comments;
+DROP TABLE CourseHashtag;
 DROP TABLE CourseLecture;
 DROP TABLE courses;
 DROP TABLE hashtags;
 DROP TABLE instructors;
 DROP TABLE LectureHashtag;
+DROP TABLE InstructorHashtag;
 DROP TABLE lectures;
 DROP TABLE users;
 SET foreign_key_checks = 1;
