@@ -4,25 +4,40 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressSession = require('express-session');
-require('dotenv').config();
-const config = require('config');
 const passport = require('passport');
 var flash = require('connect-flash');
 
+require('dotenv').config();
+const config = require('config');
+const env = process.env.NODE_ENV || 'development';
+const configJS = require(__dirname + '/config/config')[env];
+
 const passportConfig = require('./passport');
 var sequelize = require('./models').sequelize;
+const mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var sessionRouter = require('./routes/session');
-var usersRouter = require('./routes/users');
+var users = require('./routes/users');
 var joyRouter = require('./routes/joy');
-var authRouter = require('./routes/auth');
+var authRouter = require('./routes/auth.mysql');
 var dbRouter = require('./routes/db');
 var pageRouter = require('./routes/page');
+var auth = require('./routes/auth');
 
 var app = express();
 sequelize.sync();
 passportConfig(passport);
+
+if (!configJS.jwtPrivateKey) {
+  console.error('[-] FATAL ERROR: jwtPrivateKey is not defined.');
+  process.exit(1);
+}
+
+mongoose
+  .connect('mongodb://localhost/joy')
+  .then(() => console.log('[+] Connected to MongoDB.'))
+  .catch(err => console.log('[-] Could not connect to MongoDB.', err));
 
 console.log(
   `[+] NODE_ENV = ${process.env.NODE_ENV}, PORT = ${config.get('port')}`
@@ -53,9 +68,10 @@ app.use('/', pageRouter);
 app.use('/auth', authRouter);
 app.use('/joy', joyRouter);
 app.use('/session', sessionRouter);
-app.use('/users', usersRouter);
 app.use('/db', dbRouter);
 app.use('/page', pageRouter);
+app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 // Anything that doesn't match the above, send back index.html
 app.get('*', (req, res) => {

@@ -1,93 +1,38 @@
-const express = require('express');
-const passport = require('passport');
 const bcrypt = require('bcrypt');
-const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-const { User } = require('../models');
+const _ = require('lodash');
+const Joi = require('joi');
+const { User } = require('../models/user');
+const mongoose = require('mongoose');
+const express = require('express');
 const router = express.Router();
 
-router.post('/join', isNotLoggedIn, async (req, res, next) => {
-  const { name, email, password } = req.body;
-  try {
-    const exUser = await User.find({ where: { email } });
-    if (exUser) {
-      req.flash('joinError', 'This email was already registered.');
-      return res.redirect('/join');
-    }
+router.post('/', async (req, res, next) => {
+  const { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
-    const hash = await bcrypt.hash(password, 12);
-    await User.create({
-      name,
-      email,
-      password: hash
-    });
+  let user = await User.findOne({ email: req.body.email });
+  if (!user) return res.status(400).send('Invalid email or password.');
 
-    return res.redirect('/');
-  } catch (error) {
-    console.log(error);
-    return next(error);
-  }
+  const validPassword = await bcrypt.compare(req.body.password, user.password);
+  if (!validPassword) return res.status(400).send('Invalid email or password.');
+
+  const token = user.generateAuthToken();
+  res.send(token);
 });
 
-router.post('/login', isNotLoggedIn, (req, res, next) => {
-  passport.authenticate('local', (authError, user, info) => {
-    if (authError) {
-      console.error(authError);
-      return next(authError);
-    }
-    if (!user) {
-      req.flash('loginError', info.message);
-      return res.redirect('/');
-    }
-    return req.login(user, loginError => {
-      if (loginError) {
-        console.error(loginError);
-        return next(loginError);
-      }
-      return res.redirect('/');
-    });
-  })(req, res, next);
-});
+function validate(req) {
+  const schema = {
+    email: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .email(),
+    password: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+  };
 
-router.get('/logout', isLoggedIn, (req, res) => {
-  req.logout();
-  req.session.destroy9;
-  res.redirect('/');
-});
-
-router.get('/kakao', passport.authenticate('kakao'));
-
-router.get(
-  '/kakao/callback',
-  passport.authenticate('kakao', {
-    failureRedirect: '/'
-  }),
-  (req, res) => {
-    res.redirect('/');
-  }
-);
-
+  return Joi.validate(req, schema);
+}
 module.exports = router;
-
-/*
-router.get('/signup', function(req, res, next) {
-  res.send('/auth/signup');
-});
-
-router.get('/signin', function(req, res, next) {
-  res.send('/auth/signin');
-});
-
-router.get('/signout', function(req, res, next) {
-  // res.send('/auth/signout');
-  if (req.session.user) {
-    req.session.destroy(function(err) {
-      console.log('[+] /auth/signout : destroyed sessions and sign-out.');
-    });
-    res.redirect('/auth/signin');
-  } else {
-    res.redirect('/auth/signin');
-  }
-});
-
-module.exports = router;
-*/

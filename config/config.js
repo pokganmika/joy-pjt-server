@@ -7,20 +7,23 @@ module.exports = {
     database: 'joy',
     host: '127.0.0.1',
     dialect: 'mysql',
-    operatorsAliases: 'false'
+    operatorsAliases: 'false',
+    jwtPrivateKey: process.env.JWT_KEY
   },
   test: {
     username: 'root',
     password: null,
     database: 'database_test',
     host: '127.0.0.1',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    jwtPrivateKey: process.env.JWT_KEY
   },
   production: {
     username: 'root',
     password: process.env.DB_PASSWORD,
     database: 'joy',
     host: '52.79.211.21',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    jwtPrivateKey: process.env.JWT_KEY
   }
 };

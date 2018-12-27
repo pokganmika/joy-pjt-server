@@ -1,18 +1,16 @@
 const path = require('path');
 const Sequelize = require('sequelize');
 
+require('dotenv').config();
 const env = process.env.NODE_ENV || 'development';
-// const config = require(path.join(__dirname, '..', 'config', 'config.json'))[
-//   env
-// ];
-const config = require(__dirname + '/../config/config')[env];
-const db = {};
+const configJS = require(__dirname + '/../config/config')[env];
 
+const db = {};
 const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  config
+  configJS.database,
+  configJS.username,
+  configJS.password,
+  configJS
 );
 
 db.sequelize = sequelize;
@@ -23,7 +21,7 @@ db.Lecture = require('./lecture')(sequelize, Sequelize);
 db.Instructor = require('./instructor')(sequelize, Sequelize);
 db.Course = require('./course')(sequelize, Sequelize);
 // ETC
-db.User = require('./user')(sequelize, Sequelize);
+db.User = require('./user.mysql')(sequelize, Sequelize);
 db.Comment = require('./comment')(sequelize, Sequelize);
 db.Hashtag = require('./hashtag')(sequelize, Sequelize);
 

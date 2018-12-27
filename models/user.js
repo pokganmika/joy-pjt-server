@@ -1,24 +1,64 @@
-module.exports = (sequelize, DataTypes) => {
-  return sequelize.define(
-    'user',
-    {
-      nick: { type: DataTypes.STRING(255), allowNull: false, unique: true },
-      email: { type: DataTypes.STRING(100), allowNull: false, unique: true },
-      password: { type: DataTypes.STRING(255), allowNull: true },
-      avatar: { type: DataTypes.BLOB('long'), allowNull: true },
-      provider: {
-        type: DataTypes.STRING(255),
-        allowNull: false,
-        defaultValue: 'local'
-      },
-      snsId: { type: DataTypes.STRING(255), allowNull: true }
-    },
-    {
-      timestamp: true,
-      paranoid: true,
-      underscored: true,
-      charset: 'utf8',
-      collate: 'utf8_general_ci'
-    }
+const Joi = require('joi');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+
+require('dotenv').config();
+const env = process.env.NODE_ENV || 'development';
+const configJS = require('../config/config')[env];
+
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 50
+  },
+  email: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 255,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 1024
+  },
+  isAdmin: Boolean
+});
+
+userSchema.methods.generateAuthToken = function() {
+  console.log('[+] generateAuthToken :', this);
+  const token = jwt.sign(
+    { _id: this._id, isAdmin: this.isAdmin },
+    configJS.jwtPrivateKey
   );
+  return token;
 };
+
+const User = mongoose.model('User', userSchema);
+
+function validateUser(user) {
+  const schema = {
+    name: Joi.string()
+      .min(5)
+      .max(50)
+      .required(),
+    email: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .email(),
+    password: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+  };
+
+  return Joi.validate(user, schema);
+}
+
+exports.User = User;
+exports.validate = validateUser;
