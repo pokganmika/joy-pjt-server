@@ -1,6 +1,7 @@
 require('dotenv').config();
+const env = process.env.NODE_ENV || 'development';
 
-module.exports = {
+config = {
   development: {
     name: 'Joy @development',
     username: 'root',
@@ -29,7 +30,13 @@ module.exports = {
     host: '52.79.211.21',
     dialect: 'mysql',
     jwtPrivateKey: process.env.JWT_KEY,
-    mongodb: 'mongodb://joyusername:J0ypassw0rd@ds145563.mlab.com:45563/joy',
+    mongodb: `mongodb://${process.env.MONGO_USERNAME}:${
+      process.env.MONGO_PASSWORD
+    }@ds145563.mlab.com:45563/joy`,
     STATIC_FILES: '/client/build'
   }
 };
+
+module.exports = config[env];
+
+// mongodb: 'mongodb://joyusername:J0ypassw0rd@ds145563.mlab.com:45563/joy',
