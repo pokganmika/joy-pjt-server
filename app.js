@@ -8,9 +8,8 @@ const passport = require('passport');
 var flash = require('connect-flash');
 
 require('dotenv').config();
-const config = require('config');
 const env = process.env.NODE_ENV || 'development';
-const configJS = require(__dirname + '/config/config')[env];
+const config = require(__dirname + '/config/config')[env];
 
 const passportConfig = require('./passport');
 var sequelize = require('./models').sequelize;
@@ -25,24 +24,28 @@ var dbRouter = require('./routes/db');
 var pageRouter = require('./routes/page');
 var auth = require('./routes/auth');
 
+console.log(
+  `[+] NODE_ENV = ${process.env.NODE_ENV}, PORT = ${process.env.PORT}`
+);
+console.log(`[+] STATIC_FILES = ${config.STATIC_FILES}`);
+
 var app = express();
 sequelize.sync();
 passportConfig(passport);
 
-if (!configJS.jwtPrivateKey) {
+if (!config.jwtPrivateKey) {
   console.error('[-] FATAL ERROR: jwtPrivateKey is not defined.');
   process.exit(1);
 }
 
 mongoose
-  .connect('mongodb://localhost/joy')
+  // .connect('mongodb://localhost/joy')
+  .connect(config.mongodb)
   .then(() => console.log('[+] Connected to MongoDB.'))
-  .catch(err => console.log('[-] Could not connect to MongoDB.', err));
-
-console.log(
-  `[+] NODE_ENV = ${process.env.NODE_ENV}, PORT = ${config.get('port')}`
-);
-console.log(`[+] STATIC_FILES = ${config.get('STATIC_FILES')}`);
+  .catch(err => {
+    console.log('[-] Could not connect to MongoDB.', err);
+    process.exit(1);
+  });
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -62,7 +65,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(express.static(path.join(__dirname, config.get('STATIC_FILES'))));
+// app.use(express.static(path.join(__dirname, config.get('STATIC_FILES'))));
+app.use(express.static(path.join(__dirname, config.STATIC_FILES)));
 
 app.use('/', pageRouter);
 app.use('/auth', authRouter);
