@@ -1,9 +1,8 @@
 const path = require('path');
 const Sequelize = require('sequelize');
 
-require('dotenv').config();
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config')[env];
+// require('dotenv').config();
+const config = require(__dirname + '/../config/config');
 
 const db = {};
 const sequelize = new Sequelize(
@@ -56,25 +55,5 @@ db.Comment.belongsToMany(db.Instructor, { through: 'CommentInstructor' });
 db.Instructor.belongsToMany(db.Comment, { through: 'CommentInstructor' });
 db.Comment.belongsToMany(db.Course, { through: 'CommentCourse' });
 db.Course.belongsToMany(db.Comment, { through: 'CommentCourse' });
-
-/*
-db.User.hasMany(db.Comment, {
-  foreignKey: 'commenter',
-  sourceKey: 'id'
-});
-db.Comment.belongsTo(db.User, {
-  foreignKey: 'commenter',
-  targetKey: 'id'
-});
-
-db.Instructor.hasMany(db.Lecture, {
-  foreignKey: 'tutor',
-  sourceKey: 'id'
-});
-db.Lecture.belongsTo(db.Instructor, {
-  foreignKey: 'tutor',
-  targetKey: 'id'
-});
-*/
 
 module.exports = db;

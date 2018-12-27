@@ -8,8 +8,7 @@ const passport = require('passport');
 var flash = require('connect-flash');
 
 require('dotenv').config();
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/config/config')[env];
+const config = require(__dirname + '/config/config');
 
 const passportConfig = require('./passport');
 var sequelize = require('./models').sequelize;
@@ -39,7 +38,6 @@ if (!config.jwtPrivateKey) {
 }
 
 mongoose
-  // .connect('mongodb://localhost/joy')
   .connect(config.mongodb)
   .then(() => console.log('[+] Connected to MongoDB.'))
   .catch(err => {

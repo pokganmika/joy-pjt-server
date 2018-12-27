@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
-const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config')[env];
+// const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -26,7 +26,10 @@ const userSchema = new mongoose.Schema({
     minlength: 5,
     maxlength: 1024
   },
-  isAdmin: Boolean
+  isAdmin: {
+    type: Boolean,
+    default: false
+  }
 });
 
 userSchema.methods.generateAuthToken = function() {
@@ -54,7 +57,8 @@ function validateUser(user) {
     password: Joi.string()
       .min(5)
       .max(255)
-      .required()
+      .required(),
+    isAdmin: Joi.boolean()
   };
 
   return Joi.validate(user, schema);
