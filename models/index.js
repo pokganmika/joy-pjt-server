@@ -3,14 +3,14 @@ const Sequelize = require('sequelize');
 
 require('dotenv').config();
 const env = process.env.NODE_ENV || 'development';
-const configJS = require(__dirname + '/../config/config')[env];
+const config = require(__dirname + '/../config/config')[env];
 
 const db = {};
 const sequelize = new Sequelize(
-  configJS.database,
-  configJS.username,
-  configJS.password,
-  configJS
+  config.database,
+  config.username,
+  config.password,
+  config
 );
 
 db.sequelize = sequelize;
