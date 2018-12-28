@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
-
-require('dotenv').config();
-const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config')[env];
+const config = require('../config/config');
 
 module.exports = function auth(req, res, next) {
+  if (!config.requiresAuth) return next();
+
   const token = req.header('x-auth-token');
   if (!token) return res.status(401).send('Access denied. No token provided.');
 
