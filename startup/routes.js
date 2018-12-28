@@ -5,6 +5,8 @@ var expressSession = require('express-session');
 const passport = require('passport');
 var flash = require('connect-flash');
 var path = require('path');
+var createError = require('http-errors');
+var cors = require('cors');
 
 require('dotenv').config();
 const config = require(__dirname + '/../config/config');
@@ -25,6 +27,7 @@ module.exports = function(app) {
   );
   console.log(`[+] STATIC_FILES = ${config.STATIC_FILES}`);
 
+  app.use(cors());
   app.use(logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
