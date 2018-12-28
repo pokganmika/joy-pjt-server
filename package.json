@@ -13,11 +13,13 @@
     "debug": "~2.6.9",
     "dotenv": "^6.2.0",
     "express": "~4.16.0",
+    "express-async-errors": "^3.1.1",
     "express-session": "^1.15.6",
     "global": "^4.3.2",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "joi": "^14.3.0",
+    "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.4.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.4.1",
@@ -28,7 +30,9 @@
     "passport-local": "^1.0.0",
     "phantomjs-prebuilt": "^2.1.16",
     "sequelize": "^4.42.0",
-    "sequelize-cli": "^5.4.0"
+    "sequelize-cli": "^5.4.0",
+    "winston": "2.4.0",
+    "winston-mongodb": "3.0.0"
   },
   "devDependencies": {
     "casperjs": "^1.1.4",
