@@ -1,7 +1,7 @@
 const winston = require('winston');
 require('winston-mongodb');
 require('express-async-errors');
-var createError = require('http-errors');
+
 const config = require(__dirname + '/../config/config');
 
 module.exports = function() {
