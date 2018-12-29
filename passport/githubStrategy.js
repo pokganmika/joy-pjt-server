@@ -26,7 +26,7 @@ module.exports = passport => {
           } else {
             const newUser = await User.create({
               email: profile._json && profile._json.email,
-              name: profile.name,
+              name: profile.username,
               snsId: profile.id,
               provider: 'github'
             });
