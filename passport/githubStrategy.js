@@ -10,7 +10,8 @@ module.exports = passport => {
       {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: config.SERVER_URL + '/auth/github/callback'
+        callbackURL: '/auth/github/callback'
+        // callbackURL: config.SERVER_URL + '/auth/github/callback'
       },
       async (accessToken, refreshToken, profile, done) => {
         console.log('[+] /auth/github : profile = ', profile);

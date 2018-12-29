@@ -115,7 +115,7 @@ router.get('/social/token', (req, res) => {
       .header('x-auth-token', token)
       .header('access-control-expose-headers', 'x-auth-token')
       // .send(_.pick(req.user, ['id', 'name', 'email']));
-      .send(token)
+      .json(token)
   );
 
   // return res.json(token);
