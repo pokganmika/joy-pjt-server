@@ -8,6 +8,7 @@ config = {
     password: process.env.DB_PASSWORD,
     database: 'joy',
     host: '127.0.0.1',
+    SERVER_URL: 'http://localhost:5000',
     dialect: 'mysql',
     operatorsAliases: 'false',
     jwtPrivateKey: process.env.JWT_KEY,
@@ -29,6 +30,7 @@ config = {
     password: process.env.DB_PASSWORD,
     database: 'joy',
     host: '52.79.211.21',
+    SERVER_URL: 'http://52.79.211.21:5000',
     dialect: 'mysql',
     jwtPrivateKey: process.env.JWT_KEY,
     mongodb: `mongodb://${process.env.MONGO_USERNAME}:${

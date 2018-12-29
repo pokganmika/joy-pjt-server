@@ -30,7 +30,6 @@ module.exports = function(app) {
   );
   console.log(`[+] STATIC_FILES = ${config.STATIC_FILES}`);
 
-  app.use(cors());
   app.use(logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
@@ -48,8 +47,20 @@ module.exports = function(app) {
   );
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(flash());
   app.use(express.static(path.join(__dirname, config.STATIC_FILES)));
+  app.use(flash());
+  app.use(cors());
+
+  app.all('/*', function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+    res.header(
+      'Access-Control-Allow-Methods',
+      'GET,POST,PUT,HEAD,DELETE,OPTIONS'
+    );
+    res.header('Access-Control-Allow-Headers', 'content-Type,x-requested-with');
+    next();
+  });
+
   app.use('/', pageRouter);
   app.use('/joy', joyRouter);
   app.use('/session', sessionRouter);
