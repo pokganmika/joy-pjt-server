@@ -13,10 +13,13 @@ module.exports = passport => {
       },
       async (email, password, done) => {
         try {
-          // const { error } = validate({ email: email, password: password });
-          // done(null, false, {
-          //   message: error.details[0].message
-          // });
+          const { error } = validate({ email: email, password: password });
+          console.log('[*] passport LocalStrategy :', error);
+
+          if (error)
+            done(null, false, {
+              message: error.details[0].message
+            });
 
           const exUser = await User.findOne({ where: { email } });
           if (exUser) {
@@ -32,10 +35,26 @@ module.exports = passport => {
             done(null, false, { message: 'not registered email' });
           }
         } catch (error) {
-          console.error(error);
+          console.error('[-] passport LocalStrategy ', error);
           done(error);
         }
       }
     )
   );
 };
+
+function validate(req) {
+  const schema = {
+    email: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .email(),
+    password: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+  };
+
+  return Joi.validate(req, schema);
+}

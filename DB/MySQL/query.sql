@@ -89,4 +89,5 @@ DROP TABLE users;
 DROP TABLE Follow;
 DROP TABLE PostHashtag;
 DROP TABLE posts;
+DROP TABLE topics;
 SET foreign_key_checks = 1;

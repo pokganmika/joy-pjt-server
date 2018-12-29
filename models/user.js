@@ -6,12 +6,17 @@ var User = (sequelize, DataTypes) => {
   return sequelize.define(
     'user',
     {
-      name: { type: DataTypes.STRING(255), allowNull: false, unique: true },
-      email: { type: DataTypes.STRING(100), allowNull: false, unique: true },
+      name: { type: DataTypes.STRING(255), allowNull: true },
+      email: { type: DataTypes.STRING(100), allowNull: false },
       password: { type: DataTypes.STRING(255), allowNull: true },
+      isAdmin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
       avatar: { type: DataTypes.BLOB('long'), allowNull: true },
       provider: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.STRING(100),
         allowNull: false,
         defaultValue: 'local'
       },

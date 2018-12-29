@@ -24,6 +24,7 @@ db.Course = require('./course')(sequelize, Sequelize);
 // ETC
 db.Comment = require('./comment')(sequelize, Sequelize);
 db.Hashtag = require('./hashtag')(sequelize, Sequelize);
+db.Topic = require('./topic')(sequelize, Sequelize);
 
 // user : comment = 1 : N
 db.User.hasMany(db.Comment);

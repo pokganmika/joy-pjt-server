@@ -78,7 +78,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 
 router.get('/logout', isLoggedIn, (req, res) => {
   req.logout();
-  req.session.destroy9;
+  req.session.destroy;
   res.redirect('/');
 });
 
@@ -90,9 +90,36 @@ router.get(
     failureRedirect: '/'
   }),
   (req, res) => {
-    res.redirect('/');
+    res.redirect('/auth/social/token');
   }
 );
+
+router.get('/github', passport.authenticate('github'));
+
+router.get(
+  '/github/callback',
+  passport.authenticate('github', { failureRedirect: '/' }),
+  (req, res) => {
+    // Successful authentication, redirect home.
+    // res.redirect('/');
+    res.redirect('/auth/social/token');
+  }
+);
+
+router.get('/social/token', (req, res) => {
+  console.log('[+] /auth/kakao/token : user = ', req.user);
+  const token = generateAuthToken(req.user);
+
+  return (
+    res
+      .header('x-auth-token', token)
+      .header('access-control-expose-headers', 'x-auth-token')
+      // .send(_.pick(req.user, ['id', 'name', 'email']));
+      .send(token)
+  );
+
+  // return res.json(token);
+});
 
 module.exports = router;
 
