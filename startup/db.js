@@ -10,7 +10,10 @@ module.exports = function() {
   passportConfig(passport);
 
   mongoose
-    .connect(config.mongodb)
+    .connect(
+      config.mongodb,
+      { useNewUrlParser: true }
+    )
     .then(() => winston.info('[+] Connected to MongoDB.'));
 
   if (!config.jwtPrivateKey) {

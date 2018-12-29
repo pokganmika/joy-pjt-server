@@ -15,12 +15,13 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// User
+db.User = require('./user').User(sequelize, Sequelize);
 // Main subject : lecture, instructor, course
 db.Lecture = require('./lecture')(sequelize, Sequelize);
 db.Instructor = require('./instructor')(sequelize, Sequelize);
 db.Course = require('./course')(sequelize, Sequelize);
 // ETC
-db.User = require('./user.mysql')(sequelize, Sequelize);
 db.Comment = require('./comment')(sequelize, Sequelize);
 db.Hashtag = require('./hashtag')(sequelize, Sequelize);
 
