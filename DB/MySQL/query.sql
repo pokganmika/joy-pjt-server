@@ -86,4 +86,7 @@ DROP TABLE LectureHashtag;
 DROP TABLE InstructorHashtag;
 DROP TABLE lectures;
 DROP TABLE users;
+DROP TABLE Follow;
+DROP TABLE PostHashtag;
+DROP TABLE posts;
 SET foreign_key_checks = 1;

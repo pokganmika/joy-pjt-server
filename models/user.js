@@ -1,8 +1,12 @@
-module.exports = (sequelize, DataTypes) => {
+const config = require('../config/config');
+const jwt = require('jsonwebtoken');
+
+// module.exports = (sequelize, DataTypes) => {
+var User = (sequelize, DataTypes) => {
   return sequelize.define(
     'user',
     {
-      nick: { type: DataTypes.STRING(255), allowNull: false, unique: true },
+      name: { type: DataTypes.STRING(255), allowNull: false, unique: true },
       email: { type: DataTypes.STRING(100), allowNull: false, unique: true },
       password: { type: DataTypes.STRING(255), allowNull: true },
       avatar: { type: DataTypes.BLOB('long'), allowNull: true },
@@ -22,3 +26,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 };
+
+function generateAuthToken(user) {
+  const token = jwt.sign(
+    { id: user.id, isAdmin: user.isAdmin, name: user.name, email: user.email },
+    config.jwtPrivateKey
+  );
+  return token;
+}
+
+exports.User = User;
+exports.generateAuthToken = generateAuthToken;

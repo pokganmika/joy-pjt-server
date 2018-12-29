@@ -14,12 +14,15 @@ const config = require(__dirname + '/../config/config');
 const indexRouter = require('../routes/index');
 const sessionRouter = require('../routes/session');
 const joyRouter = require('../routes/joy');
-const authRouter = require('../routes/auth.mysql');
 const dbRouter = require('../routes/db');
 const pageRouter = require('../routes/page');
 const error = require('../middleware/error');
-const auth = require('../routes/auth.mongo');
-const users = require('../routes/users.mongo');
+// MySQL
+const auth = require('../routes/auth');
+const users = require('../routes/users');
+// MongoDB
+// const auth = require('../routes/auth.mongo');
+// const users = require('../routes/users.mongo');
 
 module.exports = function(app) {
   console.log(
@@ -34,9 +37,9 @@ module.exports = function(app) {
   app.use(cookieParser(process.env.COOKIE_SECRET));
   app.use(
     expressSession({
-      secret: process.env.COOKIE_SECRET,
       resave: true,
       saveUninitialized: true,
+      secret: process.env.COOKIE_SECRET,
       cookie: {
         httpOnly: true,
         secure: false
@@ -48,13 +51,14 @@ module.exports = function(app) {
   app.use(flash());
   app.use(express.static(path.join(__dirname, config.STATIC_FILES)));
   app.use('/', pageRouter);
-  app.use('/auth', authRouter);
   app.use('/joy', joyRouter);
   app.use('/session', sessionRouter);
   app.use('/db', dbRouter);
-  app.use('/page', pageRouter);
-  app.use('/api/users', users);
-  app.use('/api/auth', auth);
+  // MySQL
+  app.use('/auth', auth);
+  // MongoDB
+  // app.use('/api/users', users);
+  // app.use('/api/auth', auth);
 
   // Anything that doesn't match the above, send back index.html
   app.get('*', (req, res) => {
