@@ -13,13 +13,13 @@ const config = require(__dirname + '/../config/config');
 
 const indexRouter = require('../routes/index');
 const sessionRouter = require('../routes/session');
-const users = require('../routes/users');
 const joyRouter = require('../routes/joy');
 const authRouter = require('../routes/auth.mysql');
 const dbRouter = require('../routes/db');
 const pageRouter = require('../routes/page');
-const auth = require('../routes/auth');
 const error = require('../middleware/error');
+const auth = require('../routes/auth.mongo');
+const users = require('../routes/users.mongo');
 
 module.exports = function(app) {
   console.log(
