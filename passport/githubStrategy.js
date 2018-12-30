@@ -1,6 +1,5 @@
 var GitHubStrategy = require('passport-github').Strategy;
 require('dotenv').config();
-const config = require('../config/config');
 
 const { User } = require('../models');
 
@@ -25,7 +24,7 @@ module.exports = passport => {
             done(null, exUser);
           } else {
             const newUser = await User.create({
-              email: profile._json && profile._json.email,
+              email: profile.emails[0].value,
               name: profile.username,
               snsId: profile.id,
               provider: 'github'
