@@ -6,36 +6,60 @@ const Joi = require('joi');
 
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { User } = require('../models');
-const { generateAuthToken } = require('../models/user');
+const { generateAuthToken, validateUser } = require('../models/user');
 
 const router = express.Router();
+
+function validate(req) {
+  const schema = {
+    name: Joi.string()
+      .min(2)
+      .max(50)
+      .required(),
+    email: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .email(),
+    password: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+  };
+
+  return Joi.validate(req, schema);
+}
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
   const { name, email, password } = req.body;
   console.log('[+] /auth/join : ', name, email, password);
   try {
-    const exUser = await User.find({ where: { email } });
+    const { error } = validate(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+
+    const exUser = await User.findOne({ where: { email } });
     if (exUser) {
       req.flash('joinError', 'This email was already registered.');
-      return res.redirect('/auth/login');
+      // return res.redirect('/auth/login');
+      return res.status(400).send('User already registered.');
     }
 
-    const hash = await bcrypt.hash(password, 12);
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
     const user = await User.create({
       name,
       email,
       password: hash
     });
-
     console.log('[+] /auth/join : user = ', user);
 
-    // const token = user.generateAuthToken();
-    // res
-    //   .header('x-auth-token', token)
-    //   .header('access-control-expose-headers', 'x-auth-token')
-    //   .send(_.pick(user, ['_id', 'name', 'email']));
+    const token = generateAuthToken(user);
+    res
+      .header('x-auth-token', token)
+      .header('access-control-expose-headers', 'x-auth-token')
+      .send(_.pick(user, ['_id', 'name', 'email']));
 
-    return res.redirect('/');
+    // return res.redirect('/');
   } catch (error) {
     console.log('[-] /auth/join error occurred.', error);
     return next(error);
