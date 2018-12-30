@@ -40,7 +40,6 @@ module.exports = function(app) {
       saveUninitialized: true,
       secret: process.env.COOKIE_SECRET,
       cookie: {
-        httpOnly: true,
         secure: false
       }
     })
@@ -49,18 +48,13 @@ module.exports = function(app) {
   app.use(passport.session());
   app.use(express.static(path.join(__dirname, config.STATIC_FILES)));
   app.use(flash());
-  app.use(cors());
-
-  app.all('/*', function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
-    res.header(
-      'Access-Control-Allow-Methods',
-      'GET,POST,PUT,HEAD,DELETE,OPTIONS'
-    );
-    res.header('Access-Control-Allow-Headers', 'content-Type,x-requested-with');
-    next();
-  });
-
+  var corsOption = {
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    exposedHeaders: ['x-auth-token']
+  };
+  app.use(cors(corsOption));
   app.use('/', pageRouter);
   app.use('/joy', joyRouter);
   app.use('/session', sessionRouter);

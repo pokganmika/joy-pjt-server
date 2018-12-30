@@ -106,8 +106,43 @@ router.get(
   }
 );
 
+router.get(
+  '/facebook',
+  passport.authenticate('facebook', { scope: ['email'] })
+);
+
+router.get(
+  '/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/auth/social/token');
+  }
+);
+
+router.get(
+  '/google',
+  passport.authenticate('google', {
+    scope: [
+      'profile',
+      'email',
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email'
+    ]
+  })
+);
+
+router.get(
+  '/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/auth/social/token');
+  }
+);
+
 router.get('/social/token', (req, res) => {
-  console.log('[+] /auth/kakao/token : user = ', req.user);
+  console.log('[+] /auth/social/token : user = ', req.user);
   const token = generateAuthToken(req.user);
 
   return (
