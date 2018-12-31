@@ -71,12 +71,6 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
     'local',
     { session: false },
     (authError, user, info) => {
-      // console.log(
-      //   '[*] /auth/login : passport.authenticate => ',
-      //   authError,
-      //   user,
-      //   info
-      // );
       if (authError) {
         console.error(authError);
         return next(authError);
@@ -90,10 +84,21 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         if (loginError) {
           return next(loginError);
         }
-        // console.log('[+] /auth/login : user = ', user);
 
         const token = generateAuthToken(user);
-        return res.json(token);
+        return res.redirect(`/?token=${token}`);
+
+        // return (
+        //   res
+        //     .header('x-auth-token', token)
+        //     .header('access-control-expose-headers', 'x-auth-token')
+        //     // .send(_.pick(user, ['_id', 'name', 'email']));
+        //     .json(token)
+        // );
+
+        // return res.redirect('/auth/social/token');
+
+        // return res.json(token);
         // return res.redirect('/');
       });
     }
