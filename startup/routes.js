@@ -17,6 +17,7 @@ const joyRouter = require('../routes/joy');
 const dbRouter = require('../routes/db');
 const pageRouter = require('../routes/page');
 const error = require('../middleware/error');
+const topics = require('../routes/topics');
 // MySQL
 const auth = require('../routes/auth');
 const users = require('../routes/users');
@@ -48,18 +49,13 @@ module.exports = function(app) {
   app.use(passport.session());
   app.use(express.static(path.join(__dirname, config.STATIC_FILES)));
   app.use(flash());
-  // var corsOption = {
-  //   origin: true,
-  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  //   credentials: true,
-  //   exposedHeaders: ['x-auth-token']
-  // };
-  // app.use(cors(corsOption));
   app.use(cors());
   app.use('/', pageRouter);
   app.use('/joy', joyRouter);
   app.use('/session', sessionRouter);
   app.use('/db', dbRouter);
+
+  app.use('/topics', topics);
   // MySQL
   app.use('/auth', auth);
   // MongoDB
