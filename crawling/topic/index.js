@@ -54,4 +54,6 @@ var initializeTopics = () => {
   });
 };
 
+initializeTopics();
+
 module.exports = initializeTopics;
