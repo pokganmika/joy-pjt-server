@@ -86,7 +86,9 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         }
 
         const token = generateAuthToken(user);
-        return res.redirect(`/?token=${token}`);
+        res.send(token);
+
+        // return res.redirect(`/?token=${token}`);
 
         // return (
         //   res
