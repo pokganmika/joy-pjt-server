@@ -169,13 +169,15 @@ router.get('/social/token', (req, res) => {
   console.log('[+] /auth/social/token : user = ', req.user);
   const token = generateAuthToken(req.user);
 
-  return (
-    res
-      .header('x-auth-token', token)
-      .header('access-control-expose-headers', 'x-auth-token')
-      // .send(_.pick(req.user, ['id', 'name', 'email']));
-      .json(token)
-  );
+  // return (
+  //   res
+  //     .header('x-auth-token', token)
+  //     .header('access-control-expose-headers', 'x-auth-token')
+  //     // .send(_.pick(req.user, ['id', 'name', 'email']));
+  //     .json(token)
+  // );
+
+  res.redirect(`/?token=${token}`);
 
   // return res.json(token);
 });
