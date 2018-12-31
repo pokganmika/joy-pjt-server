@@ -14,7 +14,6 @@ module.exports = passport => {
       async (email, password, done) => {
         try {
           const { error } = validate({ email: email, password: password });
-          console.log('[*] passport LocalStrategy :', error);
 
           if (error)
             done(null, false, {
