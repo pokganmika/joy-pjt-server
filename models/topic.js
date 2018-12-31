@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     'topic',
     {
       name: { type: DataTypes.STRING(100), allowNull: false },
-      icon: { type: DataTypes.STRING(1024), allowNull: false }
+      logo: { type: DataTypes.STRING(1024), allowNull: false }
     },
     {
       timestamp: true,
