@@ -196,6 +196,17 @@ router.get(
   }
 );
 
+router.get('/instagram', passport.authenticate('instagram'));
+
+router.get(
+  '/instagram/callback',
+  passport.authenticate('instagram', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/auth/social/token');
+  }
+);
+
 router.get('/social/token', (req, res) => {
   console.log('[+] /auth/social/token : user = ', req.user);
   // const token = generateAuthToken(req.user);
