@@ -1,5 +1,4 @@
-const Joi = require('joi');
-const config = require('../config/config');
+
 
 module.exports = (sequelize, DataTypes) => {
   // var User = (sequelize, DataTypes) => {

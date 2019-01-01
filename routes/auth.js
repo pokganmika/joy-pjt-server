@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const _ = require('lodash');
 const Joi = require('joi');
 
@@ -33,11 +34,18 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
 
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
-    const user = await User.create({
-      name,
-      email,
-      password: hash
-    });
+    const user = await User.create({ name, email, password: hash });
+
+    // const hash = await bcrypt.hash(password, 12);
+    // const user = await User.create({ name, email, password: hash });
+
+    // const salt = await bcrypt.genSalt(10);
+    // const hash = await bcrypt.hash(password, salt);
+    // const user = await User.create({
+    //   name,
+    //   email,
+    //   password: hash
+    // });
     console.log('[+] /auth/join : user = ', user);
 
     // const token = generateAuthToken(user);
@@ -56,6 +64,29 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
   }
 });
 
+router.post('/login', isNotLoggedIn, function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    // Redirect if it fails
+    if (!user) {
+      // return res.redirect('/login');
+      return res.status(400).send(info.message);
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return next(err);
+      }
+      // Redirect if it succeeds
+      // return res.redirect('/users/' + user.username);
+      const token = user.generateAuthToken();
+      return res.json(token);
+    });
+  })(req, res, next);
+});
+
+/*
 router.post('/login', isNotLoggedIn, (req, res, next) => {
   passport.authenticate(
     'local',
@@ -77,7 +108,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 
         // const token = generateAuthToken(user);
         const token = user.generateAuthToken();
-        res.send(token);
+        res.json(token);
         // res.redirect('/auth/social/token');
 
         // return res.redirect(`/?token=${token}`);
@@ -98,6 +129,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
     }
   )(req, res, next);
 });
+*/
 
 router.get('/logout', isLoggedIn, (req, res) => {
   req.logout();

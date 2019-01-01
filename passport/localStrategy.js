@@ -1,5 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const Joi = require('joi');
 
 const { User } = require('../models');
@@ -13,6 +14,7 @@ module.exports = passport => {
       },
       async (email, password, done) => {
         try {
+          console.log('[+] passport - local :', email, password);
           const { error } = validate({ email: email, password: password });
 
           if (error)
