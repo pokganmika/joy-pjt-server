@@ -190,8 +190,7 @@ router.get('/social/token', (req, res) => {
   //     .json(token)
   // );
 
-  res.redirect(`/auth/?token=${token}`);
-
+  res.redirect(`/?token=${token}`);
   // return res.json(token);
 });
 
