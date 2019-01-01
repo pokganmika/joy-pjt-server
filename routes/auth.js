@@ -4,43 +4,24 @@ const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const Joi = require('joi');
 
-const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { User } = require('../models');
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { generateAuthToken, validateUser } = require('../models/user');
 
 const router = express.Router();
 
-function validate(req) {
-  const schema = {
-    name: Joi.string()
-      .min(2)
-      .max(50)
-      .required(),
-    email: Joi.string()
-      .min(5)
-      .max(255)
-      .required()
-      .email(),
-    password: Joi.string()
-      .min(5)
-      .max(255)
-      .required()
-  };
-
-  return Joi.validate(req, schema);
-}
-
 // Just added only for /auth?token={jwt}.
-router.get('/', function(req, res, next) {
-  // res.redirect('/');
-  res.send('ok');
-});
+// router.get('/', function(req, res, next) {
+//   // res.redirect('/');
+//   res.send('ok');
+// });
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
   const { name, email, password } = req.body;
   console.log('[+] /auth/join : ', name, email, password);
   try {
-    const { error } = validate(req.body);
+    // const { error } = validate(req.body);
+    const { error } = User.validateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
     const exUser = await User.findOne({ where: { email } });
@@ -59,7 +40,10 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
     });
     console.log('[+] /auth/join : user = ', user);
 
-    const token = generateAuthToken(user);
+    // const token = generateAuthToken(user);
+    const token = user.generateAuthToken();
+    console.log('[+] /auth/join : token = ', token);
+
     res
       .header('x-auth-token', token)
       .header('access-control-expose-headers', 'x-auth-token')
@@ -91,7 +75,8 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
           return next(loginError);
         }
 
-        const token = generateAuthToken(user);
+        // const token = generateAuthToken(user);
+        const token = user.generateAuthToken();
         res.send(token);
         // res.redirect('/auth/social/token');
 
@@ -181,7 +166,9 @@ router.get(
 
 router.get('/social/token', (req, res) => {
   console.log('[+] /auth/social/token : user = ', req.user);
-  const token = generateAuthToken(req.user);
+  // const token = generateAuthToken(req.user);
+  const token = req.user.generateAuthToken();
+  console.log('[+] /auth/social/token : token = ', token);
 
   // return (
   //   res

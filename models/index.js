@@ -1,8 +1,8 @@
 const path = require('path');
 const Sequelize = require('sequelize');
-
-// require('dotenv').config();
-const config = require(__dirname + '/../config/config');
+const jwt = require('jsonwebtoken');
+const Joi = require('joi');
+const config = require('../config/config');
 
 const db = {};
 const sequelize = new Sequelize(
@@ -16,7 +16,38 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // User
-db.User = require('./user').User(sequelize, Sequelize);
+// db.User = require('./user').User(sequelize, Sequelize);
+db.User = require('./user')(sequelize, Sequelize);
+
+// TODO: need to be moved into /models/users.js file. How ?
+// Add instance method in User
+db.User.prototype.generateAuthToken = function() {
+  const token = jwt.sign(
+    { id: this.id, isAdmin: this.isAdmin, name: this.name, email: this.email },
+    config.jwtPrivateKey
+  );
+  return token;
+};
+// Add class method in User
+db.User.validateUser = function(user) {
+  const schema = {
+    name: Joi.string()
+      .min(2)
+      .max(50)
+      .required(),
+    email: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .email(),
+    password: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+  };
+  return Joi.validate(user, schema);
+};
+
 // Main subject : lecture, instructor, course
 db.Lecture = require('./lecture')(sequelize, Sequelize);
 db.Instructor = require('./instructor')(sequelize, Sequelize);
