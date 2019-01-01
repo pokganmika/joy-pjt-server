@@ -3,6 +3,7 @@ const kakao = require('./kakaoStrategy');
 const github = require('./githubStrategy');
 const facebook = require('./facebookStrategy');
 const google = require('./googleStrategy');
+const instagram = require('./instagramStrategy');
 
 const { User } = require('../models');
 
@@ -22,4 +23,5 @@ module.exports = passport => {
   github(passport);
   facebook(passport);
   google(passport);
+  instagram(passport);
 };
