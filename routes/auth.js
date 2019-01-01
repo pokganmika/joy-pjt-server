@@ -75,7 +75,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
 router.post('/login', isNotLoggedIn, (req, res, next) => {
   passport.authenticate(
     'local',
-    { session: false },
+    // { session: false },
     (authError, user, info) => {
       if (authError) {
         console.error(authError);
@@ -93,6 +93,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 
         const token = generateAuthToken(user);
         res.send(token);
+        // res.redirect('/auth/social/token');
 
         // return res.redirect(`/?token=${token}`);
 
