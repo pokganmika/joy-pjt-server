@@ -32,7 +32,8 @@ function validate(req) {
 
 // Just added only for /auth?token={jwt}.
 router.get('/', function(req, res, next) {
-  res.redirect('/');
+  // res.redirect('/');
+  res.send('ok');
 });
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
@@ -189,7 +190,7 @@ router.get('/social/token', (req, res) => {
   //     .json(token)
   // );
 
-  res.redirect(`/auth?token=${token}`);
+  res.redirect(`/auth/?token=${token}`);
 
   // return res.json(token);
 });
