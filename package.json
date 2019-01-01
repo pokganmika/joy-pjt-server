@@ -5,7 +5,11 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "test": "mocha app.test.js"
+    "test": "jest --watchAll"
+  },
+  "jest": {
+    "verbose": true,
+    "testPathIgnorePatterns": ["/node_modules/", "/client/"]
   },
   "dependencies": {
     "bcrypt": "^3.0.3",
@@ -44,6 +48,7 @@
   "devDependencies": {
     "casperjs": "^1.1.4",
     "chai": "^4.2.0",
+    "jest": "^23.6.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
     "youtube-node": "^1.3.2"
