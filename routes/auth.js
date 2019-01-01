@@ -30,6 +30,12 @@ function validate(req) {
   return Joi.validate(req, schema);
 }
 
+// Just added only for /auth?token={jwt}.
+router.get('/', function(req, res, next) {
+  // res.redirect('/');
+  res.send('ok');
+});
+
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
   const { name, email, password } = req.body;
   console.log('[+] /auth/join : ', name, email, password);
