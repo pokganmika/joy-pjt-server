@@ -9,9 +9,8 @@ var createError = require('http-errors');
 var cors = require('cors');
 
 require('dotenv').config();
-const config = require(__dirname + '/../config/config');
+const config = require('../config/config');
 
-const indexRouter = require('../routes/index');
 const sessionRouter = require('../routes/session');
 const joyRouter = require('../routes/joy');
 const dbRouter = require('../routes/db');
@@ -20,12 +19,11 @@ const error = require('../middleware/error');
 const topics = require('../routes/topics');
 // MySQL
 const auth = require('../routes/auth');
-const users = require('../routes/users');
 // MongoDB
 // const auth = require('../routes/auth.mongo');
 // const users = require('../routes/users.mongo');
 
-module.exports = function(app) {
+module.exports = function (app) {
   console.log(
     `[+] NODE_ENV = ${process.env.NODE_ENV}, PORT = ${process.env.PORT}`
   );
@@ -68,7 +66,7 @@ module.exports = function(app) {
   });
 
   // catch 404 and forward to error handler
-  app.use(function(req, res, next) {
+  app.use(function (req, res, next) {
     next(createError(404));
   });
 
