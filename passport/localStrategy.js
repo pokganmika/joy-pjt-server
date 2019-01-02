@@ -1,6 +1,4 @@
 const LocalStrategy = require('passport-local').Strategy;
-// const bcrypt = require('bcrypt');
-const bcrypt = require('bcryptjs');
 const Joi = require('joi');
 
 const { User } = require('../models');
@@ -17,14 +15,19 @@ module.exports = passport => {
           console.log('[+] passport - local :', email, password);
           const { error } = validate({ email: email, password: password });
 
-          if (error)
+          if (error) {
             done(null, false, {
               message: error.details[0].message
             });
+          }
 
           const exUser = await User.findOne({ where: { email } });
           if (exUser) {
-            const result = await bcrypt.compare(password, exUser.password);
+            // const result = await bcrypt.compare(password, exUser.password);
+            const result = await User.comparePassword(
+              password,
+              exUser.password
+            );
             if (result) {
               done(null, exUser);
             } else {
@@ -44,7 +47,7 @@ module.exports = passport => {
   );
 };
 
-function validate(req) {
+function validate (req) {
   const schema = {
     email: Joi.string()
       .min(5)

@@ -1,21 +1,11 @@
 const express = require('express');
 const passport = require('passport');
-// const bcrypt = require('bcrypt');
-const bcrypt = require('bcryptjs');
 const _ = require('lodash');
-const Joi = require('joi');
 
 const { User } = require('../models');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-const { generateAuthToken, validateUser } = require('../models/user');
 
 const router = express.Router();
-
-// Just added only for /auth?token={jwt}.
-// router.get('/', function(req, res, next) {
-//   // res.redirect('/');
-//   res.send('ok');
-// });
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -32,23 +22,10 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
       return res.status(400).send('User already registered.');
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(password, salt);
+    const hash = await User.generateHash(password);
     const user = await User.create({ name, email, password: hash });
-
-    // const hash = await bcrypt.hash(password, 12);
-    // const user = await User.create({ name, email, password: hash });
-
-    // const salt = await bcrypt.genSalt(10);
-    // const hash = await bcrypt.hash(password, salt);
-    // const user = await User.create({
-    //   name,
-    //   email,
-    //   password: hash
-    // });
     console.log('[+] /auth/join : user = ', user);
 
-    // const token = generateAuthToken(user);
     const token = user.generateAuthToken();
     console.log('[+] /auth/join : token = ', token);
 
@@ -64,8 +41,8 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
   }
 });
 
-router.post('/login', isNotLoggedIn, function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
+router.post('/login', isNotLoggedIn, function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
     if (err) {
       return next(err);
     }
@@ -74,12 +51,11 @@ router.post('/login', isNotLoggedIn, function(req, res, next) {
       // return res.redirect('/login');
       return res.status(400).send(info.message);
     }
-    req.logIn(user, function(err) {
+    req.logIn(user, function (err) {
       if (err) {
         return next(err);
       }
-      // Redirect if it succeeds
-      // return res.redirect('/users/' + user.username);
+      // Success
       const token = user.generateAuthToken();
       return res.json(token);
     });
@@ -133,7 +109,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 
 router.get('/logout', isLoggedIn, (req, res) => {
   req.logout();
-  req.session.destroy;
+  req.session.destroy();
   res.redirect('/');
 });
 
@@ -155,8 +131,6 @@ router.get(
   '/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => {
-    // Successful authentication, redirect home.
-    // res.redirect('/');
     res.redirect('/auth/social/token');
   }
 );
@@ -169,8 +143,7 @@ router.get(
 router.get(
   '/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
+  function (req, res) {
     res.redirect('/auth/social/token');
   }
 );
@@ -190,8 +163,7 @@ router.get(
 router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
+  function (req, res) {
     res.redirect('/auth/social/token');
   }
 );
@@ -201,28 +173,17 @@ router.get('/instagram', passport.authenticate('instagram'));
 router.get(
   '/instagram/callback',
   passport.authenticate('instagram', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
+  function (req, res) {
     res.redirect('/auth/social/token');
   }
 );
 
 router.get('/social/token', (req, res) => {
   console.log('[+] /auth/social/token : user = ', req.user);
-  // const token = generateAuthToken(req.user);
   const token = req.user.generateAuthToken();
   console.log('[+] /auth/social/token : token = ', token);
 
-  // return (
-  //   res
-  //     .header('x-auth-token', token)
-  //     .header('access-control-expose-headers', 'x-auth-token')
-  //     // .send(_.pick(req.user, ['id', 'name', 'email']));
-  //     .json(token)
-  // );
-
   res.redirect(`/?token=${token}`);
-  // return res.json(token);
 });
 
 module.exports = router;
