@@ -6,35 +6,20 @@
 
 var app = require('../app');
 var debug = require('debug')('server-im09-prj-joy:server');
-const fs = require('fs');
-const http = require('http');
-const https = require('https');
+var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
 var port = normalizePort(process.env.PORT || '5000');
-// TODO: Disable after enabling HTTPS.
-// app.set('port', port);
-
-// Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/joy-learn.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/joy-learn.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/joy-learn.com/chain.pem', 'utf8');
-
-const credentials = {
-  key: privateKey,
-  cert: certificate,
-  ca: ca
-};
+app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
 var server = http.createServer(app);
-const httpsServer = https.createServer(credentials, app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -43,10 +28,6 @@ const httpsServer = https.createServer(credentials, app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-httpsServer.listen(443, () => {
-  winston.info('HTTPS Server running on port 443');
-});
 
 /**
  * Normalize a port into a number, string, or false.
