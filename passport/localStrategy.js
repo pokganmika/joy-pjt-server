@@ -53,7 +53,7 @@ function validate (req) {
       .min(5)
       .max(255)
       .required()
-      .email(),
+      .email({ minDomainAtoms: 2 }),
     password: Joi.string()
       .min(5)
       .max(255)

@@ -1,8 +1,6 @@
 const bcrypt = require('bcrypt');
-const _ = require('lodash');
 const Joi = require('joi');
 const { User } = require('../models/user.mongo');
-const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
@@ -20,13 +18,13 @@ router.post('/', async (req, res) => {
   res.send(token);
 });
 
-function validate(req) {
+function validate (req) {
   const schema = {
     email: Joi.string()
       .min(5)
       .max(255)
       .required()
-      .email(),
+      .email({ minDomainAtoms: 2 }),
     password: Joi.string()
       .min(5)
       .max(255)
