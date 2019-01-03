@@ -23,7 +23,7 @@ const auth = require('../routes/auth');
 // const auth = require('../routes/auth.mongo');
 // const users = require('../routes/users.mongo');
 
-module.exports = function (app) {
+module.exports = function(app) {
   console.log(
     `[+] NODE_ENV = ${process.env.NODE_ENV}, PORT = ${process.env.PORT}`
   );
@@ -66,7 +66,7 @@ module.exports = function (app) {
   });
 
   // catch 404 and forward to error handler
-  app.use(function (req, res, next) {
+  app.use(function(req, res, next) {
     next(createError(404));
   });
 

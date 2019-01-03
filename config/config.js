@@ -30,7 +30,7 @@ config = {
     password: process.env.DB_PASSWORD,
     database: 'joy',
     host: '52.79.211.21',
-    SERVER_URL: 'http://52.79.211.21:5000',
+    SERVER_URL: 'https://joy-learn.com',
     dialect: 'mysql',
     jwtPrivateKey: process.env.JWT_KEY,
     mongodb: `mongodb://${process.env.MONGO_USERNAME}:${
