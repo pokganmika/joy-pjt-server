@@ -178,6 +178,16 @@ router.get(
   }
 );
 
+router.get('/naver', passport.authenticate('naver'));
+
+router.get(
+  '/naver/callback',
+  passport.authenticate('naver', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/auth/social/token');
+  }
+);
+
 router.get('/social/token', (req, res) => {
   console.log('[+] /auth/social/token : user = ', req.user);
   const token = req.user.generateAuthToken();

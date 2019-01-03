@@ -1,7 +1,7 @@
 require('dotenv').config();
 const env = process.env.NODE_ENV || 'development';
 
-config = {
+var config = {
   development: {
     name: 'Joy @development',
     username: 'root',
