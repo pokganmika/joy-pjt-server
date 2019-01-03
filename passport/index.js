@@ -4,6 +4,7 @@ const github = require('./githubStrategy');
 const facebook = require('./facebookStrategy');
 const google = require('./googleStrategy');
 const instagram = require('./instagramStrategy');
+const naver = require('./naverStrategy');
 
 const { User } = require('../models');
 
@@ -24,4 +25,5 @@ module.exports = passport => {
   facebook(passport);
   google(passport);
   instagram(passport);
+  naver(passport);
 };
