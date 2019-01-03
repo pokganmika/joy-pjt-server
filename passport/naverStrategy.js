@@ -23,7 +23,9 @@ module.exports = passport => {
             done(null, exUser);
           } else {
             const newUser = await User.create({
-              name: profile.displayName,
+              name: profile.displayName
+                ? profile.displayName
+                : profile._json.email,
               email: profile.emails[0].value,
               username: profile.displayName,
               provider: 'naver',
