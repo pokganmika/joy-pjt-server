@@ -15,7 +15,8 @@ var initializeTopics = () => {
 
   Topic.create({
     name: 'Python',
-    logo: 'http://blog.klocwork.com/wp-content/uploads/2016/01/python-logo.png'
+    logl:
+      'https://www.python.org/static/community_logos/python-logo-master-v3-TM.png'
   });
 
   Topic.create({
