@@ -83,6 +83,14 @@ db.Lecture.belongsTo(db.Instructor);
 db.User.hasMany(db.Course);
 db.Course.belongsTo(db.User);
 
+// topic : { instrcutor, lecture, course } = 1 : N
+db.Topic.hasMany(db.Instructor);
+db.Instructor.belongsTo(db.Topic);
+db.Topic.hasMany(db.Lecture);
+db.Lecture.belongsTo(db.Topic);
+db.Topic.hasMany(db.Course);
+db.Course.belongsTo(db.Topic);
+
 // hashtag = { lecture, instructor, course }= N : M
 db.Lecture.belongsToMany(db.Hashtag, { through: 'LectureHashtag' });
 db.Hashtag.belongsToMany(db.Lecture, { through: 'LectureHashtag' });

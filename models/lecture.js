@@ -6,7 +6,12 @@ module.exports = (sequelize, DataTypes) => {
       url: { type: DataTypes.STRING(1000), allowNull: false },
       name: { type: DataTypes.STRING(255), allowNull: false },
       screenshot: { type: DataTypes.BLOB('long'), allowNull: true },
-      free: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true }
+      free: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true },
+      lang: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+        defaultValue: 'eng'
+      }
     },
     {
       timestamp: true,
