@@ -17,13 +17,15 @@ const dbRouter = require('../routes/db');
 const pageRouter = require('../routes/page');
 const error = require('../middleware/error');
 const topics = require('../routes/topics');
+const lectures = require('../routes/lectures');
+const instructors = require('../routes/instructors');
 // MySQL
 const auth = require('../routes/auth');
 // MongoDB
 // const auth = require('../routes/auth.mongo');
 // const users = require('../routes/users.mongo');
 
-module.exports = function(app) {
+module.exports = function (app) {
   console.log(
     `[+] NODE_ENV = ${process.env.NODE_ENV}, PORT = ${process.env.PORT}`
   );
@@ -53,7 +55,11 @@ module.exports = function(app) {
   app.use('/session', sessionRouter);
   app.use('/db', dbRouter);
 
+  // DB data
   app.use('/topics', topics);
+  app.use('/lectures', lectures);
+  app.use('/instructors', instructors);
+
   // MySQL
   app.use('/auth', auth);
   // MongoDB
@@ -66,7 +72,7 @@ module.exports = function(app) {
   });
 
   // catch 404 and forward to error handler
-  app.use(function(req, res, next) {
+  app.use(function (req, res, next) {
     next(createError(404));
   });
 
