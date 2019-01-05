@@ -53,6 +53,41 @@ var initializeTopics = () => {
     name: 'angular',
     logo: 'https://teamextension.es/dist/img/skills/angularjs_og.png'
   });
+
+  Topic.create({
+    name: 'blockchain',
+    logo: ''
+  });
+
+  Topic.create({
+    name: '',
+    logo: ''
+  });
+
+  Topic.create({
+    name: '',
+    logo: ''
+  });
+
+  Topic.create({
+    name: '',
+    logo: ''
+  });
+
+  Topic.create({
+    name: '',
+    logo: ''
+  });
+
+  Topic.create({
+    name: '',
+    logo: ''
+  });
+
+  Topic.create({
+    name: '',
+    logo: ''
+  });
 };
 
 initializeTopics();
