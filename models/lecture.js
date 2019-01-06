@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       title: { type: DataTypes.STRING(1000), allowNull: false },
       url: { type: DataTypes.STRING(1000), allowNull: false },
-      name: { type: DataTypes.STRING(255), allowNull: false },
+      name: { type: DataTypes.STRING(255), primaryKey: true, allowNull: false },
       screenshot: { type: DataTypes.STRING(255), allowNull: true },
       free: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true },
       lang: {
