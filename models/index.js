@@ -100,15 +100,15 @@ db.Course.belongsToMany(db.Hashtag, { through: 'CourseHashtag' });
 db.Hashtag.belongsToMany(db.Course, { through: 'CourseHashtag' });
 
 // course : lecture = N : M
-db.Course.belongsToMany(db.Lecture, { through: 'CourseLecture' });
-db.Lecture.belongsToMany(db.Course, { through: 'CourseLecture' });
+// db.Course.belongsToMany(db.Lecture, { through: 'CourseLecture' });
+// db.Lecture.belongsToMany(db.Course, { through: 'CourseLecture' });
 
 // comment : { lecture, instructor, course }  = N : M
-db.Comment.belongsToMany(db.Lecture, { through: 'CommentLecture' });
-db.Lecture.belongsToMany(db.Comment, { through: 'CommentLecture' });
-db.Comment.belongsToMany(db.Instructor, { through: 'CommentInstructor' });
-db.Instructor.belongsToMany(db.Comment, { through: 'CommentInstructor' });
-db.Comment.belongsToMany(db.Course, { through: 'CommentCourse' });
-db.Course.belongsToMany(db.Comment, { through: 'CommentCourse' });
+// db.Comment.belongsToMany(db.Lecture, { through: 'CommentLecture' });
+// db.Lecture.belongsToMany(db.Comment, { through: 'CommentLecture' });
+// db.Comment.belongsToMany(db.Instructor, { through: 'CommentInstructor' });
+// db.Instructor.belongsToMany(db.Comment, { through: 'CommentInstructor' });
+// db.Comment.belongsToMany(db.Course, { through: 'CommentCourse' });
+// db.Course.belongsToMany(db.Comment, { through: 'CommentCourse' });
 
 module.exports = db;

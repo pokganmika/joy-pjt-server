@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     'topic',
     {
-      name: { type: DataTypes.STRING(100), allowNull: false },
+      name: { type: DataTypes.STRING(100), primaryKey: true, allowNull: false },
       logo: { type: DataTypes.STRING(1024), allowNull: false }
     },
     {
