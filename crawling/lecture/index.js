@@ -69,6 +69,230 @@ var initializeLecture = () => {
   }).then(lecture => {
     lecture.setTopics(['javascript']);
   });
+
+  Lecture.create({
+    name: 'Mastering React',
+    url: 'https://codewithmosh.com/p/mastering-react',
+    screenshot: '',
+    free: false,
+    instructor: 'mosh',
+    lang: 'eng'
+  }).then(lecture => {
+    lecture.setTopics(['react']);
+  });
+
+  Lecture.create({
+    name: 'The Complete Node.js Course',
+    url: 'https://codewithmosh.com/p/the-complete-node-js-course',
+    screenshot: '',
+    free: false,
+    instructor: 'mosh',
+    lang: 'eng'
+  }).then(lecture => {
+    lecture.setTopics(['node.js']);
+  });
+
+  Lecture.create({
+    name: '[초급 풀스택] 유튜브 클론 코딩',
+    url:
+      'https://academy.nomadcoders.co/p/javascript-fullstack-from-zero-to-hero',
+    screenshot: '',
+    free: false,
+    instructor: 'nicolas',
+    lang: 'kor'
+  }).then(lecture => {
+    lecture.setTopics(['javascript', 'node.js', 'mongodb', 'aws', 'express']);
+  });
+
+  Lecture.create({
+    name: '[JS 풀스택] 우버 클론 코딩',
+    url:
+      'https://academy.nomadcoders.co/p/nuber-fullstack-javascript-graphql-course',
+    screenshot: '',
+    free: false,
+    instructor: 'nicolas',
+    lang: ''
+  }).then(lecture => {
+    lecture.setTopics([
+      'javascript',
+      'typescript',
+      'node.js',
+      'graphql',
+      'apollo',
+      'aws'
+    ]);
+  });
+
+  Lecture.create({
+    name: '초보자를 위한 바닐라 JavaScript',
+    url:
+      'https://academy.nomadcoders.co/p/javascript-basics-for-absolute-beginners-kr',
+    screenshot: '',
+    free: false,
+    instructor: 'nicolas',
+    lang: 'kor'
+  }).then(lecture => {
+    lecture.setTopics(['javascript']);
+  });
+
+  Lecture.create({
+    name: 'React Fundamentals',
+    url: 'https://learn.tylermcginnis.com/courses/enrolled/50507',
+    screenshot: '',
+    free: false,
+    instructor: 'tyler'
+  }).then(lecture => {
+    lecture.setTopics(['react']);
+  });
+
+  Lecture.create({
+    name: 'redux',
+    url: 'https://learn.tylermcginnis.com/courses/enrolled/294390',
+    screenshot: '',
+    free: false,
+    instructor: 'tyler'
+  }).then(lecture => {
+    lecture.setTopics(['redux']);
+  });
+
+  Lecture.create({
+    name: 'React Router',
+    url: 'https://learn.tylermcginnis.com/courses/enrolled/147194',
+    screenshot: '',
+    free: false,
+    instructor: 'tyler'
+  }).then(lecture => {
+    lecture.setTopics(['react']);
+  });
+
+  Lecture.create({
+    name: 'React Native (Udacity)',
+    url: 'https://learn.tylermcginnis.com/courses/enrolled/336438',
+    screenshot: '',
+    free: false,
+    instructor: 'tyler',
+    lang: ''
+  }).then(lecture => {
+    lecture.setTopics(['reactnative']);
+  });
+
+  Lecture.create({
+    name: 'React Fundamentals (Udacity)',
+    url: 'https://learn.tylermcginnis.com/courses/enrolled/336610',
+    screenshot: '',
+    free: false,
+    instructor: 'tyler',
+    lang: ''
+  }).then(lecture => {
+    lecture.setTopics(['react']);
+  });
+
+  Lecture.create({
+    name: 'CSS GRID',
+    url: 'https://cssgrid.io/',
+    screenshot: '',
+    free: false,
+    instructor: 'wesbos'
+  }).then(lecture => {
+    lecture.setTopics(['css']);
+  });
+
+  Lecture.create({
+    name: 'Learn node',
+    url: 'https://learnnode.com/',
+    screenshot: '',
+    free: false,
+    instructor: 'wesbox',
+    lang: ''
+  }).then(lecture => {
+    lecture.setTopics(['node.js']);
+  });
+
+  Lecture.create({
+    name: 'Learn Redux',
+    url: 'https://learnredux.com/',
+    screenshot: '',
+    free: false,
+    instructor: 'wesbos'
+  }).then(lecture => {
+    lecture.setTopics(['redux']);
+  });
+
+  Lecture.create({
+    name: 'Modern React with Redux [2019 Update]',
+    url: 'https://www.udemy.com/react-redux/?couponCode=4MORE1234',
+    screenshot: '',
+    free: false,
+    instructor: 'stephen'
+  }).then(lecture => {
+    lecture.setTopics(['react', 'redux']);
+  });
+
+  Lecture.create({
+    name: "ES6 Javascript: The Complete Developer's Guide",
+    url: 'https://www.udemy.com/javascript-es6-tutorial/?couponCode=4MORE1234',
+    screenshot: '',
+    free: false,
+    instructor: 'stephen',
+    lang: ''
+  }).then(lecture => {
+    lecture.setTopics(['javascript']);
+  });
+
+  Lecture.create({
+    name: 'Advanced React and Redux: 2018 Edition',
+    url: 'https://www.udemy.com/react-redux-tutorial/?couponCode=4MORE1234',
+    screenshot: '',
+    free: false,
+    instructor: 'stephen'
+  }).then(lecture => {
+    lecture.setTopics(['react', 'redux']);
+  });
+
+  Lecture.create({
+    name: 'GraphQL with React: The Complete Developers Guide',
+    url:
+      'https://www.udemy.com/graphql-with-react-course/?couponCode=4MORE1234',
+    screenshot: '',
+    free: false,
+    instructor: 'stephen',
+    lang: ''
+  }).then(lecture => {
+    lecture.setTopics(['graphql', 'react']);
+  });
+
+  Lecture.create({
+    name: 'The Coding Interview Bootcamp: Algorithms + Data Structures',
+    url:
+      'https://www.udemy.com/coding-interview-bootcamp-algorithms-and-data-structure/?couponCode=4more1234',
+    screenshot: '',
+    free: false,
+    instructor: 'stephen'
+  }).then(lecture => {
+    lecture.setTopics(['algorithm']);
+  });
+
+  Lecture.create({
+    name: 'The Node.js Master Class',
+    url: 'https://pirple.thinkific.com/courses/the-nodejs-master-class',
+    screenshot:
+      'https://s3.amazonaws.com/thinkific-import/116598/iFxOskqYSuy4Ll2AIJOM_node.png',
+    free: false,
+    instructor: 'pirple'
+  }).then(lecture => {
+    lecture.setTopics(['node.js']);
+  });
+
+  Lecture.create({
+    name: '',
+    url: '',
+    screenshot: '',
+    free: false,
+    instructor: '',
+    lang: ''
+  }).then(lecture => {
+    lecture.setTopics(['']);
+  });
 };
 
 var initLecture = () => {
