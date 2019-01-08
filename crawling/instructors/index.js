@@ -110,7 +110,8 @@ var initializeInstructors = () => {
     fullName: '',
     gitHub: '',
     mainUrl: 'https://pirple.thinkific.com/',
-    image: ''
+    image:
+      'https://s3.amazonaws.com/thinkific-import/116598/cYiInJ14QTexS1zdpeTV_logo5.png'
   }).then(instructor => {
     instructor.setTopics(['node.js']);
   });
