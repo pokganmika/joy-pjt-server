@@ -2,14 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 const { Instructor } = require('../models');
-const { InstructorTopic } = require('../models');
+const { Lecture } = require('../models');
 const { Topic } = require('../models');
 
 router.get('/:topicId', async function (req, res, next) {
-  console.log('[+] //////////////', req.params.topicId);
   const { topicId } = req.params;
+  let result = {};
 
-  Instructor.findAll({
+  let instructors = await Instructor.findAll({
     attributes: ['name', 'fullName', 'gitHub', 'mainUrl', 'image', 'lang'],
     include: [
       {
@@ -17,9 +17,21 @@ router.get('/:topicId', async function (req, res, next) {
         where: { name: topicId }
       }
     ]
-  }).then(instructors => {
-    res.json(instructors);
   });
+  result['instructors'] = instructors;
+
+  let lectures = await Lecture.findAll({
+    attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
+    include: [
+      {
+        model: Topic,
+        where: { name: topicId }
+      }
+    ]
+  });
+  result['lectures'] = lectures;
+
+  res.send(result);
 });
 
 module.exports = router;
