@@ -92,6 +92,7 @@ DROP TABLE posts;
 DROP TABLE topics;
 DROP TABLE instructors_topics;
 DROP TABLE instructorTopic;
+DROP TABLE InstructorTopic;
 DROP TABLE LectureTopic;
 DROP TABLE lectures_instructors;
 DROP TABLE lectures_topics;
