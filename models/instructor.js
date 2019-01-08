@@ -8,9 +8,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true
       },
-      gitHub: { type: DataTypes.STRING(255), allowNull: true },
-      mainUrl: { type: DataTypes.STRING(255), allowNull: true },
-      avatar: { type: DataTypes.STRING(255), allowNull: true },
+      fullName: {
+        type: DataTypes.STRING(255),
+        allowNull: true
+      },
+      gitHub: { type: DataTypes.STRING(1024), allowNull: true },
+      mainUrl: { type: DataTypes.STRING(1024), allowNull: true },
+      image: { type: DataTypes.STRING(1024), allowNull: true },
       lang: {
         type: DataTypes.STRING(100),
         allowNull: false,
