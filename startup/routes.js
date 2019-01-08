@@ -17,8 +17,10 @@ const dbRouter = require('../routes/db');
 const pageRouter = require('../routes/page');
 const error = require('../middleware/error');
 const topics = require('../routes/topics');
-const lectures = require('../routes/lectures');
+const lectures = require('../routes/lecture');
 const instructors = require('../routes/instructors');
+const topic = require('../routes/topic');
+const lecture = require('../routes/lecture');
 // MySQL
 const auth = require('../routes/auth');
 // MongoDB
@@ -59,6 +61,8 @@ module.exports = function (app) {
   app.use('/topics', topics);
   app.use('/lectures', lectures);
   app.use('/instructors', instructors);
+  app.use('/t', topic);
+  app.use('/l', lecture);
 
   // MySQL
   app.use('/auth', auth);

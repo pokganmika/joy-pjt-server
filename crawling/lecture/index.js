@@ -1,5 +1,5 @@
 var Lecture = require('../../models').Lecture;
-var LectureTopic = require('../../models').LectureTopic;
+// var LectureTopic = require('../../models').LectureTopic;
 
 var initializeLecture = () => {
   Lecture.create({
@@ -10,6 +10,8 @@ var initializeLecture = () => {
     free: true,
     instructor: 'nicolas',
     lang: 'kor'
+  }).then(lecture => {
+    lecture.setTopics(['javascript']);
   });
 
   Lecture.create({
@@ -19,6 +21,8 @@ var initializeLecture = () => {
       'https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/4JkBtVU9QUwcwFCWi3AV',
     free: false,
     instructor: 'mosh'
+  }).then(lecture => {
+    lecture.setTopics(['javascript']);
   });
 
   Lecture.create({
@@ -28,6 +32,8 @@ var initializeLecture = () => {
       'https://steemitimages.com/DQmP18L6k8EMHNfsvRNaRFWvka2GnRo8b8CpDuM3hbYGnqp/ff3ywn-1-800x533.jpg',
     free: false,
     instructor: 'wesbos'
+  }).then(lecture => {
+    lecture.setTopics(['javascript']);
   });
 
   Lecture.create({
@@ -37,6 +43,8 @@ var initializeLecture = () => {
       'https://steemitimages.com/DQmP18L6k8EMHNfsvRNaRFWvka2GnRo8b8CpDuM3hbYGnqp/ff3ywn-1-800x533.jpg',
     free: false,
     instructor: 'wesbos'
+  }).then(lecture => {
+    lecture.setTopics(['javascript']);
   });
 
   Lecture.create({
@@ -46,6 +54,8 @@ var initializeLecture = () => {
       'http://www.ddaily.co.kr/data/photos/20150313/art_1427325311.jpg',
     free: true,
     instructor: 'TylerMcGinnis'
+  }).then(lecture => {
+    lecture.setTopics(['javascript']);
   });
 
   Lecture.create({
@@ -56,44 +66,13 @@ var initializeLecture = () => {
     free: true,
     instructor: 'zerocho',
     lang: 'kor'
-  });
-};
-
-var addLectureToTopic = () => {
-  LectureTopic.create({
-    lecture_name: '초보자를 위한 바닐라 JavaScript',
-    topic_name: 'javascript'
-  });
-
-  LectureTopic.create({
-    lecture_name: 'JavaScript Basics for Beginners',
-    topic_name: 'javascript'
-  });
-
-  LectureTopic.create({
-    lecture_name: 'ES6 for everyone!',
-    topic_name: 'javascript'
-  });
-
-  LectureTopic.create({
-    lecture_name: 'javascript 30',
-    topic_name: 'javascript'
-  });
-
-  LectureTopic.create({
-    lecture_name: 'Modern JavaScript',
-    topic_name: 'javascript'
-  });
-
-  LectureTopic.create({
-    lecture_name: 'Node.js 교과서',
-    topic_name: ''
+  }).then(lecture => {
+    lecture.setTopics(['javascript']);
   });
 };
 
 var initLecture = () => {
   initializeLecture();
-  addLectureToTopic();
 };
 
 initLecture();
