@@ -22,8 +22,9 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
       return res.status(400).send('User already registered.');
     }
 
+    const avatar = User.generateAvatar(`local-${email}`);
     const hash = await User.generateHash(password);
-    const user = await User.create({ name, email, password: hash });
+    const user = await User.create({ name, email, password: hash, avatar });
     console.log('[+] /auth/join : user = ', user);
 
     const token = user.generateAuthToken();
@@ -41,8 +42,8 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
   }
 });
 
-router.post('/login', isNotLoggedIn, function (req, res, next) {
-  passport.authenticate('local', function (err, user, info) {
+router.post('/login', isNotLoggedIn, function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
     if (err) {
       return next(err);
     }
@@ -51,7 +52,7 @@ router.post('/login', isNotLoggedIn, function (req, res, next) {
       // return res.redirect('/login');
       return res.status(400).send(info.message);
     }
-    req.logIn(user, function (err) {
+    req.logIn(user, function(err) {
       if (err) {
         return next(err);
       }
@@ -143,7 +144,7 @@ router.get(
 router.get(
   '/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function (req, res) {
+  function(req, res) {
     res.redirect('/auth/social/token');
   }
 );
@@ -163,7 +164,7 @@ router.get(
 router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
-  function (req, res) {
+  function(req, res) {
     res.redirect('/auth/social/token');
   }
 );
@@ -173,7 +174,7 @@ router.get('/instagram', passport.authenticate('instagram'));
 router.get(
   '/instagram/callback',
   passport.authenticate('instagram', { failureRedirect: '/login' }),
-  function (req, res) {
+  function(req, res) {
     res.redirect('/auth/social/token');
   }
 );
@@ -183,7 +184,7 @@ router.get('/naver', passport.authenticate('naver'));
 router.get(
   '/naver/callback',
   passport.authenticate('naver', { failureRedirect: '/login' }),
-  function (req, res) {
+  function(req, res) {
     res.redirect('/auth/social/token');
   }
 );

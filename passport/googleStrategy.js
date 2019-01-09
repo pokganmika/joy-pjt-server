@@ -22,11 +22,13 @@ module.exports = passport => {
             console.log('[*] /auth/google/callback : existing user - ', exUser);
             done(null, exUser);
           } else {
+            const avatar = User.generateAvatar(`google-${profile.id}`);
             const newUser = await User.create({
               email: profile.email,
               name: profile.displayName,
               snsId: profile.id,
-              provider: 'google'
+              provider: 'google',
+              avatar: avatar
             });
             console.log('[*] /auth/google/callback : newUser - ', newUser);
             done(null, newUser);

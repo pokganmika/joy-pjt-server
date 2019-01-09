@@ -22,6 +22,7 @@ module.exports = passport => {
             console.log('[*] /auth/naver/callback : existing user - ', exUser);
             done(null, exUser);
           } else {
+            const avatar = User.generateAvatar(`naver-${profile.id}`);
             const newUser = await User.create({
               name: profile.displayName
                 ? profile.displayName
@@ -29,7 +30,8 @@ module.exports = passport => {
               email: profile.emails[0].value,
               username: profile.displayName,
               provider: 'naver',
-              snsId: profile.id
+              snsId: profile.id,
+              avatar: avatar
             });
 
             console.log('[*] /auth/kakao/callback : newUser - ', newUser);

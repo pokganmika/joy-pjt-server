@@ -25,11 +25,13 @@ module.exports = passport => {
             console.log('[*] /auth/kakao/callback : existing user - ', exUser);
             done(null, exUser);
           } else {
+            const avatar = User.generateAvatar(`kakao-${profile.id}`);
             const newUser = await User.create({
               email: profile._json && profile._json.kaccount_email,
               name: profile.username,
               snsId: profile.id,
-              provider: 'kakao'
+              provider: 'kakao',
+              avatar: avatar
             });
             console.log('[*] /auth/kakao/callback : newUser - ', newUser);
             done(null, newUser);
