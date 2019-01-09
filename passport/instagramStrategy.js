@@ -25,10 +25,12 @@ module.exports = passport => {
             );
             done(null, exUser);
           } else {
+            const avatar = User.generateAvatar(`instagram-${profile.id}`);
             const newUser = await User.create({
               name: profile.username,
               snsId: profile.id,
-              provider: 'instagram'
+              provider: 'instagram',
+              avatar: avatar
             });
             console.log('[*] /auth/instagram/callback : newUser - ', newUser);
             done(null, newUser);

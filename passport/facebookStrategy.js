@@ -33,11 +33,13 @@ module.exports = passport => {
             );
             done(null, exUser);
           } else {
+            const avatar = User.generateAvatar(`facebook-${profile.id}`);
             const newUser = await User.create({
               email: profile.email,
               name: profile.displayName,
               snsId: profile.id,
-              provider: 'facebook'
+              provider: 'facebook',
+              avatar: avatar
             });
             console.log('[*] /auth/facebook/callback : newUser - ', newUser);
             done(null, newUser);
