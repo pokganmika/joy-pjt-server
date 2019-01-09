@@ -5,6 +5,8 @@ const Joi = require('joi');
 const config = require('../config/config');
 // const bcrypt = require('bcrypt');
 const bcrypt = require('bcryptjs');
+const Avatars = require('@dicebear/avatars').default;
+const SpriteCollection = require('@dicebear/avatars-identicon-sprites').default;
 
 const db = {};
 const sequelize = new Sequelize(
@@ -23,7 +25,7 @@ db.User = require('./user')(sequelize, Sequelize);
 
 // TODO: need to be moved into /models/users.js file. How ?
 // Add instance method in User
-db.User.prototype.generateAuthToken = function () {
+db.User.prototype.generateAuthToken = function() {
   const token = jwt.sign(
     { id: this.id, isAdmin: this.isAdmin, name: this.name, email: this.email },
     config.jwtPrivateKey
@@ -32,7 +34,7 @@ db.User.prototype.generateAuthToken = function () {
 };
 
 // Add class method in User
-db.User.validateUser = function (user) {
+db.User.validateUser = function(user) {
   const schema = {
     name: Joi.string()
       .min(2)
@@ -51,15 +53,21 @@ db.User.validateUser = function (user) {
   return Joi.validate(user, schema);
 };
 
-db.User.generateHash = async function (password) {
+db.User.generateHash = async function(password) {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
   return hash;
 };
 
-db.User.comparePassword = async function (loginPassword, savedPassword) {
+db.User.comparePassword = async function(loginPassword, savedPassword) {
   const result = await bcrypt.compare(loginPassword, savedPassword);
   return result;
+};
+
+db.User.generateAvatar = function(seedForAvatar) {
+  let avatars = new Avatars(SpriteCollection);
+  let svg = avatars.create(seedForAvatar);
+  return svg;
 };
 
 // Main subject : lecture, instructor, course

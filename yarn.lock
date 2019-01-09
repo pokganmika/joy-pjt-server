@@ -16,6 +16,14 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@dicebear/avatars-female-sprites@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@dicebear/avatars-female-sprites/-/avatars-female-sprites-1.0.4.tgz#caa5bdae4a150c66317dc5a8d66f65cfc4df08c9"
+
+"@dicebear/avatars-identicon-sprites@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@dicebear/avatars-identicon-sprites/-/avatars-identicon-sprites-1.0.3.tgz#f903a56b594a8dd484eebc409c6c3204ff8121c9"
+
 "@dicebear/avatars-male-sprites@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@dicebear/avatars-male-sprites/-/avatars-male-sprites-1.0.4.tgz#bc3a34a6933e9aed806f47cf1a6c92f1166db7fa"
