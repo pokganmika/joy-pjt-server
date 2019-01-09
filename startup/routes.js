@@ -21,13 +21,14 @@ const lectures = require('../routes/lecture');
 const instructors = require('../routes/instructors');
 const topic = require('../routes/topic');
 const lecture = require('../routes/lecture');
+const api = require('../routes/api');
 // MySQL
 const auth = require('../routes/auth');
 // MongoDB
 // const auth = require('../routes/auth.mongo');
 // const users = require('../routes/users.mongo');
 
-module.exports = function (app) {
+module.exports = function(app) {
   console.log(
     `[+] NODE_ENV = ${process.env.NODE_ENV}, PORT = ${process.env.PORT}`
   );
@@ -56,7 +57,7 @@ module.exports = function (app) {
   app.use('/joy', joyRouter);
   app.use('/session', sessionRouter);
   app.use('/db', dbRouter);
-
+  app.use('/api', api);
   // DB data
   app.use('/topics', topics);
   app.use('/lectures', lectures);
@@ -76,7 +77,7 @@ module.exports = function (app) {
   });
 
   // catch 404 and forward to error handler
-  app.use(function (req, res, next) {
+  app.use(function(req, res, next) {
     next(createError(404));
   });
 
