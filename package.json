@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@dicebear/avatars": "^2.0.4",
+    "@dicebear/avatars-female-sprites": "^1.0.4",
+    "@dicebear/avatars-identicon-sprites": "^1.0.3",
     "@dicebear/avatars-male-sprites": "^1.0.4",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
