@@ -4,6 +4,11 @@ var router = express.Router();
 const { Instructor } = require('../models');
 const { Lecture } = require('../models');
 
+// router.get('/', async function (req, res, next) {
+//   const topics = await Instructor.findAll();
+//   res.send(topics);
+// });
+
 router.get('/:instructorId', async function (req, res, next) {
   const { instructorId } = req.params;
   let result = {};

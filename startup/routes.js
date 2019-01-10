@@ -16,10 +16,16 @@ const joyRouter = require('../routes/joy');
 const dbRouter = require('../routes/db');
 const pageRouter = require('../routes/page');
 const error = require('../middleware/error');
+
 const topics = require('../routes/topics');
-const topic = require('../routes/topic');
-const lecture = require('../routes/lecture');
+const topicTopic = require('../routes/topic');
+
 const instructor = require('../routes/instructor');
+const lecture = require('../routes/lecture');
+
+const instructorTopic = require('../routes/instructorTopic');
+const lectureTopic = require('../routes/lectureTopic');
+
 const api = require('../routes/api');
 // MySQL
 const auth = require('../routes/auth');
@@ -59,13 +65,13 @@ module.exports = function (app) {
   app.use('/api', api);
   // DB data
   app.use('/topics', topics);
+  app.use('/t', topicTopic);
 
-  app.use('/t', topic);
-  app.use('/l', lecture);
-  app.use('/i', instructor);
+  app.use('/i', instructorTopic);
+  app.use('/l', lectureTopic);
 
-  app.use('/lecture', lecture);
   app.use('/instructor', instructor);
+  app.use('/lecture', lecture);
 
   // MySQL
   app.use('/auth', auth);
