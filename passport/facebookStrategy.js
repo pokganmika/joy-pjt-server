@@ -33,7 +33,7 @@ module.exports = passport => {
             );
             done(null, exUser);
           } else {
-            const avatar = User.generateAvatar(`facebook-${profile.id}`);
+            const avatar = await User.generateAvatar(`facebook-${profile.id}`);
             const newUser = await User.create({
               email: profile.email,
               name: profile.displayName,
