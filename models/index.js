@@ -7,6 +7,7 @@ const config = require('../config/config');
 const bcrypt = require('bcryptjs');
 const Avatars = require('@dicebear/avatars').default;
 const SpriteCollection = require('@dicebear/avatars-identicon-sprites').default;
+const awsS3 = require('../services/awsS3');
 
 const db = {};
 const sequelize = new Sequelize(
@@ -64,10 +65,17 @@ db.User.comparePassword = async function(loginPassword, savedPassword) {
   return result;
 };
 
-db.User.generateAvatar = function(seedForAvatar) {
+db.User.generateAvatar = async seedForAvatar => {
   let avatars = new Avatars(SpriteCollection);
   let svg = avatars.create(seedForAvatar);
-  return svg;
+
+  let file = {};
+  file.name = seedForAvatar;
+  file.data = svg;
+  const { Location: avatar } = await awsS3.upload(file);
+
+  console.log('[+] generateAvatar : ', avatar);
+  return avatar;
 };
 
 // Main subject : lecture, instructor, course
