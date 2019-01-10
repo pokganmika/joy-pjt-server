@@ -17,8 +17,6 @@ const dbRouter = require('../routes/db');
 const pageRouter = require('../routes/page');
 const error = require('../middleware/error');
 const topics = require('../routes/topics');
-const lectures = require('../routes/lecture');
-const instructors = require('../routes/instructors');
 const topic = require('../routes/topic');
 const lecture = require('../routes/lecture');
 const instructor = require('../routes/instructor');
@@ -29,7 +27,7 @@ const auth = require('../routes/auth');
 // const auth = require('../routes/auth.mongo');
 // const users = require('../routes/users.mongo');
 
-module.exports = function(app) {
+module.exports = function (app) {
   console.log(
     `[+] NODE_ENV = ${process.env.NODE_ENV}, PORT = ${process.env.PORT}`
   );
@@ -61,12 +59,13 @@ module.exports = function(app) {
   app.use('/api', api);
   // DB data
   app.use('/topics', topics);
-  app.use('/lectures', lectures);
-  app.use('/instructor', instructor);
-  app.use('/instructors', instructors);
+
   app.use('/t', topic);
   app.use('/l', lecture);
   app.use('/i', instructor);
+
+  app.use('/lecture', lecture);
+  app.use('/instructor', instructor);
 
   // MySQL
   app.use('/auth', auth);
@@ -80,7 +79,7 @@ module.exports = function(app) {
   });
 
   // catch 404 and forward to error handler
-  app.use(function(req, res, next) {
+  app.use(function (req, res, next) {
     next(createError(404));
   });
 
