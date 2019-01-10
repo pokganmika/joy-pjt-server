@@ -19,6 +19,7 @@
     "@dicebear/avatars-female-sprites": "^1.0.4",
     "@dicebear/avatars-identicon-sprites": "^1.0.3",
     "@dicebear/avatars-male-sprites": "^1.0.4",
+    "aws-sdk": "^2.384.0",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",

@@ -4,6 +4,7 @@ const _ = require('lodash');
 
 const { User } = require('../models');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const awsS3 = require('../services/awsS3');
 
 const router = express.Router();
 
@@ -22,7 +23,9 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
       return res.status(400).send('User already registered.');
     }
 
-    const avatar = User.generateAvatar(`local-${email}`);
+    const avatar = await User.generateAvatar(`local-${email}`);
+    console.log('[+] /join : avatar = ', avatar);
+
     const hash = await User.generateHash(password);
     const user = await User.create({ name, email, password: hash, avatar });
     console.log('[+] /auth/join : user = ', user);
