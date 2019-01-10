@@ -21,6 +21,7 @@ const lectures = require('../routes/lecture');
 const instructors = require('../routes/instructors');
 const topic = require('../routes/topic');
 const lecture = require('../routes/lecture');
+const instructor = require('../routes/instructor');
 const api = require('../routes/api');
 // MySQL
 const auth = require('../routes/auth');
@@ -64,6 +65,7 @@ module.exports = function(app) {
   app.use('/instructors', instructors);
   app.use('/t', topic);
   app.use('/l', lecture);
+  app.use('/i', instructor);
 
   // MySQL
   app.use('/auth', auth);
