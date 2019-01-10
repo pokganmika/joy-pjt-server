@@ -84,6 +84,7 @@ DROP TABLE hashtags;
 DROP TABLE instructors;
 DROP TABLE LectureHashtag;
 DROP TABLE InstructorHashtag;
+DROP TABLE InstructorLecture;
 DROP TABLE lectures;
 DROP TABLE users;
 DROP TABLE Follow;
