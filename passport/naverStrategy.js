@@ -22,7 +22,7 @@ module.exports = passport => {
             console.log('[*] /auth/naver/callback : existing user - ', exUser);
             done(null, exUser);
           } else {
-            const avatar = User.generateAvatar(`naver-${profile.id}`);
+            const avatar = await User.generateAvatar(`naver-${profile.id}`);
             const newUser = await User.create({
               name: profile.displayName
                 ? profile.displayName

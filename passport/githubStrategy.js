@@ -23,7 +23,7 @@ module.exports = passport => {
             console.log('[*] /auth/github/callback : existing user - ', exUser);
             done(null, exUser);
           } else {
-            const avatar = User.generateAvatar(`github-${profile.id}`);
+            const avatar = await User.generateAvatar(`github-${profile.id}`);
             const newUser = await User.create({
               email: profile.emails && profile.emails[0].value,
               name: profile.username,
