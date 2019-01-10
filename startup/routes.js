@@ -62,6 +62,7 @@ module.exports = function(app) {
   // DB data
   app.use('/topics', topics);
   app.use('/lectures', lectures);
+  app.use('/instructor', instructor);
   app.use('/instructors', instructors);
   app.use('/t', topic);
   app.use('/l', lecture);

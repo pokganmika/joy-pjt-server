@@ -8,6 +8,11 @@ var initializeInstructors = () => {
     image: 'https://www.filepicker.io/api/file/Hfn2brfS1jwMefqbZrOQ'
   }).then(instructor => {
     instructor.setTopics(['javascript', 'node.js']);
+    instructor.setLectures([
+      '초보자를 위한 바닐라 JavaScript',
+      '[초급 풀스택] 유튜브 클론 코딩',
+      '[JS 풀스택] 우버 클론 코딩'
+    ]);
   });
 
   Instructor.create({
@@ -18,6 +23,11 @@ var initializeInstructors = () => {
       'https://programmingwithmosh.com/wp-content/uploads/2017/06/mosh-300px.png'
   }).then(instructor => {
     instructor.setTopics(['javascript', 'node.js']);
+    instructor.setLectures([
+      'JavaScript Basics for Beginners',
+      'Mastering React',
+      'The Complete Node.js Course'
+    ]);
   });
 
   Instructor.create({
@@ -28,6 +38,12 @@ var initializeInstructors = () => {
     image: 'https://avatars2.githubusercontent.com/u/176013?s=460&v=4'
   }).then(instructor => {
     instructor.setTopics(['javascript', 'node.js']);
+    instructor.setLectures([
+      'ES6 for everyone!',
+      'javascript 30',
+      'CSS GRID',
+      'Learn Redux'
+    ]);
   });
 
   Instructor.create({
@@ -38,6 +54,13 @@ var initializeInstructors = () => {
     image: 'https://avatars1.githubusercontent.com/u/2933430?s=460&v=4'
   }).then(instructor => {
     instructor.setTopics(['react']);
+    instructor.setLectures([
+      'Modern JavaScript',
+      'React Fundamentals',
+      'redux',
+      'React Router',
+      'React Fundamentals (Udacity)'
+    ]);
   });
 
   Instructor.create({
@@ -48,6 +71,7 @@ var initializeInstructors = () => {
       'https://yt3.ggpht.com/a-/AAuE7mCsm-O6oq7I1HFzWQggU2BnUKsBAH7nYaRvVg=s48-c-k-c0xffffffff-no-rj-mo'
   }).then(instructor => {
     instructor.setTopics(['node.js']);
+    instructor.setLectures(['Node.js 교과서']);
   });
 
   Instructor.create({
@@ -58,6 +82,7 @@ var initializeInstructors = () => {
       'https://trello-avatars.s3.amazonaws.com/b3bd414d2fbf3e8d43a4b45f4d596316/170.png'
   }).then(instructor => {
     instructor.setTopics(['react']);
+    instructor.setLectures([]);
   });
 
   Instructor.create({
@@ -68,6 +93,7 @@ var initializeInstructors = () => {
       'https://yt3.ggpht.com/a-/AAuE7mAstwu29YagZtXYej8NIekzubyiSUK7kEKjEw=s288-mo-c-c0xffffffff-rj-k-no'
   }).then(instructor => {
     instructor.setTopics(['reactnative']);
+    instructor.setLectures([]);
   });
 
   Instructor.create({
@@ -78,6 +104,7 @@ var initializeInstructors = () => {
       'https://yt3.ggpht.com/a-/AAuE7mDwFmBMeUdQ9GSpatt0J9QPSC0sPLQz_4mc_A=s288-mo-c-c0xffffffff-rj-k-no'
   }).then(instructor => {
     instructor.setTopics(['javascript', 'node.js', 'mongodb', 'html']);
+    instructor.setLectures([]);
   });
 
   Instructor.create({
@@ -88,6 +115,7 @@ var initializeInstructors = () => {
       'https://yt3.ggpht.com/a-/AAuE7mC4twuaLeHHSfnzowVpRNJ4qhyn-8_DZUSShg=s288-mo-c-c0xffffffff-rj-k-no'
   }).then(instructor => {
     instructor.setTopics(['javascript', 'react', 'node.js', 'graphql']);
+    instructor.setLectures([]);
   });
 
   Instructor.create({
@@ -103,6 +131,13 @@ var initializeInstructors = () => {
       'graphql',
       'reactnative'
     ]);
+    instructor.setLectures([
+      'Modern React with Redux [2019 Update]',
+      "ES6 Javascript: The Complete Developer's Guide",
+      'Advanced React and Redux: 2018 Edition',
+      'GraphQL with React: The Complete Developers Guide',
+      'The Coding Interview Bootcamp: Algorithms + Data Structures'
+    ]);
   });
 
   Instructor.create({
@@ -114,6 +149,7 @@ var initializeInstructors = () => {
       'https://s3.amazonaws.com/thinkific-import/116598/cYiInJ14QTexS1zdpeTV_logo5.png'
   }).then(instructor => {
     instructor.setTopics(['node.js']);
+    instructor.setLectures(['Learn node', 'The Node.js Master Class']);
   });
 
   Instructor.create({
@@ -124,6 +160,7 @@ var initializeInstructors = () => {
     image: ''
   }).then(instructor => {
     instructor.setTopics(['']);
+    instructor.setLectures([]);
   });
 
   Instructor.create({
@@ -134,6 +171,7 @@ var initializeInstructors = () => {
     image: ''
   }).then(instructor => {
     instructor.setTopics(['']);
+    instructor.setLectures([]);
   });
 
   Instructor.create({
@@ -144,6 +182,7 @@ var initializeInstructors = () => {
     image: ''
   }).then(instructor => {
     instructor.setTopics(['']);
+    instructor.setLectures([]);
   });
 
   Instructor.create({
@@ -154,6 +193,7 @@ var initializeInstructors = () => {
     image: ''
   }).then(instructor => {
     instructor.setTopics(['']);
+    instructor.setLectures([]);
   });
 
   Instructor.create({
@@ -164,6 +204,7 @@ var initializeInstructors = () => {
     image: ''
   }).then(instructor => {
     instructor.setTopics(['']);
+    instructor.setLectures([]);
   });
 
   Instructor.create({
@@ -174,6 +215,7 @@ var initializeInstructors = () => {
     image: ''
   }).then(instructor => {
     instructor.setTopics(['']);
+    instructor.setLectures([]);
   });
 };
 
