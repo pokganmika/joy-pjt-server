@@ -282,17 +282,6 @@ var initializeLecture = () => {
   }).then(lecture => {
     lecture.setTopics(['node.js']);
   });
-
-  Lecture.create({
-    name: '',
-    url: '',
-    screenshot: '',
-    free: false,
-    instructor: '',
-    lang: ''
-  }).then(lecture => {
-    lecture.setTopics(['']);
-  });
 };
 
 var initLecture = () => {
