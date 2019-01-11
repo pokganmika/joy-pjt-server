@@ -1,8 +1,12 @@
 var express = require('express');
+const Sequelize = require('sequelize');
 var router = express.Router();
 
 const { Instructor } = require('../models');
 const { Lecture } = require('../models');
+const { Comment } = require('../models');
+const { User } = require('../models');
+const { db } = require('../models');
 
 // router.get('/', async function (req, res, next) {
 //   const topics = await Instructor.findAll();
@@ -13,29 +17,67 @@ router.get('/:instructorId', async function (req, res, next) {
   const { instructorId } = req.params;
   let result = {};
 
-  Instructor.findAll({
+  let instructors = await Instructor.findAll({
     where: { name: instructorId },
     attributes: ['name', 'fullName', 'gitHub', 'mainUrl', 'image', 'lang']
-  }).then(instructor => {
-    result['instructor'] = instructor;
+  });
+  result['instructor'] = instructors;
 
-    console.log(instructor);
+  let comments = await Comment.findAll({
+    where: {
+      instructor_name: instructorId
+    },
+    include: [
+      {
+        model: User
+      }
+    ]
+  });
+  console.log(`[+] /instructor/${instructorId} : comment = `, comments);
+  result['comments'] = comments;
 
-    Lecture.findAll({
-      attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
-      include: [
-        {
-          model: Instructor,
-          where: { name: instructorId }
-        }
-      ]
-    }).then(lectures => {
-      console.log(lectures);
-      result['lectures'] = lectures;
+  let lectures = await Lecture.findAll({
+    attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
+    include: [
+      {
+        model: Instructor,
+        where: { name: instructorId }
+      }
+    ]
+  });
+  result['lectures'] = lectures;
 
-      res.send(result);
-    });
+  res.send(result);
+});
+
+/*
+    Comment.findAll({
+      where: {
+        instructor_name: instructorId
+      }
+    })
+
+      .then(comment => {
+        result['comment'] = comment;
+
+        Lecture.findAll({
+          attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
+          include: [
+            {
+              model: Instructor,
+              where: { name: instructorId }
+            }
+          ]
+        });
+      })
+      .then(lectures => {
+        console.log(lectures);
+        result['lectures'] = lectures;
+
+        res.send(result);
+      });
   });
 });
+*/
 
 module.exports = router;

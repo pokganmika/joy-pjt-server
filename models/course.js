@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     'course',
     {
-      title: {
+      name: {
         type: DataTypes.STRING(1000),
         primaryKey: true,
         allowNull: false

@@ -105,6 +105,9 @@ db.Comment.belongsTo(db.Lecture);
 db.Course.hasMany(db.Comment);
 db.Comment.belongsTo(db.Course);
 
+db.User.hasMany(db.Comment);
+db.Comment.belongsTo(db.User);
+
 // course : lecture = N : M
 // db.Course.belongsToMany(db.Lecture, { through: 'CourseLecture' });
 // db.Lecture.belongsToMany(db.Course, { through: 'CourseLecture' });
