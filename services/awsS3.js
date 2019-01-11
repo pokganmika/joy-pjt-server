@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const AWS = require('aws-sdk');
 require('dotenv').config();
@@ -13,13 +14,19 @@ var upload = file => {
     Bucket: BUCKET_NAME
   });
   return new Promise((resolve, reject) => {
-    s3bucket.createBucket(function() {
+    const fileName = path.basename(file.name) + '_' + Date.now();
+    const hash = crypto
+      .createHash('md5')
+      .update(fileName)
+      .digest('hex');
+    s3bucket.createBucket(function () {
       var params = {
         Bucket: BUCKET_NAME,
-        Key: 'avatar/' + Date.now() + '_' + path.basename(file.name) + '.svg',
+        Key: `avatar/${hash}`,
+        ContentType: 'image/svg+xml',
         Body: file.data
       };
-      s3bucket.upload(params, function(err, data) {
+      s3bucket.upload(params, function (err, data) {
         if (err) {
           console.log('[-] error in callback');
           console.log(err);
