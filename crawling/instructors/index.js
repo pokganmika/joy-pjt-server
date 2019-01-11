@@ -108,7 +108,7 @@ var initializeInstructors = () => {
   });
 
   Instructor.create({
-    name: 'Academind',
+    name: 'academind',
     gitHub: '',
     mainUrl: 'https://www.youtube.com/channel/UCSJbGtTlrDami-tDGPUV9-w',
     image:
@@ -153,14 +153,14 @@ var initializeInstructors = () => {
   });
 
   Instructor.create({
-    name: '',
+    name: 'codewars.com',
     fullName: '',
     gitHub: '',
-    mainUrl: '',
-    image: ''
+    mainUrl: 'https://www.codewars.com/',
+    image:
+      'https://www.codewars.com/assets/landing/copy-train-815de5a524d9a4b226ca7c6d1dae7d13.png'
   }).then(instructor => {
-    instructor.setTopics(['']);
-    instructor.setLectures([]);
+    instructor.setTopics(['coding']);
   });
 
   Instructor.create({

@@ -158,6 +158,11 @@ var initializeTopics = () => {
     logo:
       'https://media.wired.com/photos/5af2249a0b975d475fa7afbf/master/pass/algorithms_landlord-FINAL.jpg'
   });
+
+  Topic.create({
+    name: 'coding',
+    logo: 'https://cdn1.iconfinder.com/data/icons/seo-web-3/128/1-46-512.png'
+  });
 };
 
 initializeTopics();

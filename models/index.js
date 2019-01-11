@@ -87,6 +87,28 @@ db.Comment = require('./comment')(sequelize, Sequelize);
 db.Hashtag = require('./hashtag')(sequelize, Sequelize);
 db.Topic = require('./topic')(sequelize, Sequelize);
 
+// Topic = { lecture, instructor, course }= N : M
+db.Instructor.belongsToMany(db.Topic, { through: 'InstructorTopic' });
+db.Topic.belongsToMany(db.Instructor, { through: 'InstructorTopic' });
+db.Lecture.belongsToMany(db.Topic, { through: 'LectureTopic' });
+db.Topic.belongsToMany(db.Lecture, { through: 'LectureTopic' });
+db.Instructor.belongsToMany(db.Lecture, { through: 'InstructorLecture' });
+db.Lecture.belongsToMany(db.Instructor, { through: 'InstructorLecture' });
+// db.Course.belongsToMany(db.Topic, { through: 'CourseTopic' });
+// db.Topic.belongsToMany(db.Course, { through: 'CourseTopic' });
+
+// { instructor, lecture, book, course} : Comment = 1 : N
+db.Instructor.hasMany(db.Comment);
+db.Comment.belongsTo(db.Instructor);
+db.Lecture.hasMany(db.Comment);
+db.Comment.belongsTo(db.Lecture);
+db.Course.hasMany(db.Comment);
+db.Comment.belongsTo(db.Course);
+
+// course : lecture = N : M
+// db.Course.belongsToMany(db.Lecture, { through: 'CourseLecture' });
+// db.Lecture.belongsToMany(db.Course, { through: 'CourseLecture' });
+
 // instructor : topic = N : M
 // db.InstructorTopic = require('./instructors_topic')(sequelize, Sequelize);
 // db.InstructorTopic.belongsTo(db.Instructor);
@@ -100,20 +122,6 @@ db.Topic = require('./topic')(sequelize, Sequelize);
 // db.LectureInstructor.belongsTo(db.Lecture);
 // db.LectureInstructor.belongsTo(db.Instructor);
 
-// hashtag = { lecture, instructor, course }= N : M
-db.Instructor.belongsToMany(db.Topic, { through: 'InstructorTopic' });
-db.Topic.belongsToMany(db.Instructor, { through: 'InstructorTopic' });
-db.Lecture.belongsToMany(db.Topic, { through: 'LectureTopic' });
-db.Topic.belongsToMany(db.Lecture, { through: 'LectureTopic' });
-db.Instructor.belongsToMany(db.Lecture, { through: 'InstructorLecture' });
-db.Lecture.belongsToMany(db.Instructor, { through: 'InstructorLecture' });
-// db.Course.belongsToMany(db.Topic, { through: 'CourseTopic' });
-// db.Topic.belongsToMany(db.Course, { through: 'CourseTopic' });
-
-// course : lecture = N : M
-// db.Course.belongsToMany(db.Lecture, { through: 'CourseLecture' });
-// db.Lecture.belongsToMany(db.Course, { through: 'CourseLecture' });
-
 // comment : { lecture, instructor, course }  = N : M
 // db.Comment.belongsToMany(db.Lecture, { through: 'CommentLecture' });
 // db.Lecture.belongsToMany(db.Comment, { through: 'CommentLecture' });
@@ -121,11 +129,5 @@ db.Lecture.belongsToMany(db.Instructor, { through: 'InstructorLecture' });
 // db.Instructor.belongsToMany(db.Comment, { through: 'CommentInstructor' });
 // db.Comment.belongsToMany(db.Course, { through: 'CommentCourse' });
 // db.Course.belongsToMany(db.Comment, { through: 'CommentCourse' });
-
-// user : comment = 1 : N
-// db.User.hasMany(db.Comment);
-// db.Comment.belongsTo(db.User);
-// db.User.hasMany(db.Course);
-// db.Course.belongsTo(db.User);
 
 module.exports = db;
