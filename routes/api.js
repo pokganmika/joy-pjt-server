@@ -1,8 +1,11 @@
 const express = require('express');
+
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
-const { User } = require('../models');
 const { Comment } = require('../models');
+const { User } = require('../models');
+const { Instructor } = require('../models');
+const { Lecture } = require('../models');
 
 const router = express.Router();
 
@@ -22,16 +25,32 @@ router.post('/:type/:name', (req, res) => {
 
   console.log(req.body);
 
+  /*
+  if (type === 'instructor') {
+    Instructor.findAll({
+      where: { name: name }
+    }).then(instructor => {
+      instructor.setComments({
+        writer: req.body.writer,
+        content: req.body.content
+      });
+    });
+  } else if (type === 'lecture') {
+  }
+  */
+
   Comment.create({
     writer: req.body.writer,
-    content: req.body.content
-  }).then(comment => {
-    if (type === 'instructor') {
-      comment.setInstructors([name]);
-    } else if (type === 'lecture') {
-      comment.setLectures([name]);
-    }
+    content: req.body.content,
+    instructor_name: name
   });
+  // .then(comment => {
+  //   if (type === 'instructor') {
+  //     comment.setInstructors([name]);
+  //   } else if (type === 'lecture') {
+  //     comment.setLectures([name]);
+  //   }
+  // });
 
   res.send('ok');
 });
