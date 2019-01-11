@@ -18,7 +18,7 @@ const pageRouter = require('../routes/page');
 const error = require('../middleware/error');
 
 const topics = require('../routes/topics');
-const topicTopic = require('../routes/topic');
+const topicTopic = require('../routes/topicTopic');
 
 const instructor = require('../routes/instructor');
 const lecture = require('../routes/lecture');
@@ -65,8 +65,8 @@ module.exports = function (app) {
   app.use('/api', api);
   // DB data
   app.use('/topics', topics);
-  app.use('/t', topicTopic);
 
+  app.use('/t', topicTopic);
   app.use('/i', instructorTopic);
   app.use('/l', lectureTopic);
 
