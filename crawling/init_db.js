@@ -6,6 +6,7 @@ const initializeBook = require('./book');
 var initDb = () => {
   initializeTopics();
   initializeInstructors();
+
   initializeLecture();
   initializeBook();
 };
