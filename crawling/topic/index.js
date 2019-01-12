@@ -163,6 +163,12 @@ var initializeTopics = () => {
     name: 'coding',
     logo: 'https://cdn1.iconfinder.com/data/icons/seo-web-3/128/1-46-512.png'
   });
+
+  Topic.create({
+    name: 'functional',
+    logo:
+      'http://blog.nofluffjuststuff.com/wp-content/uploads/2016/05/2000px-Lambda-logo.svg_-300x300.png'
+  });
 };
 
 initializeTopics();
