@@ -222,6 +222,86 @@ var initializeInstructors = () => {
   }).then(instructor => {
     instructor.setTopics(['javascript']);
   });
+
+  Instructor.create({
+    name: 'gaearon',
+    fullName: 'Dan Abramov',
+    gitHub: 'https://github.com/gaearon',
+    mainUrl: 'https://github.com/gaearon',
+    image: 'https://avatars1.githubusercontent.com/u/810438?s=460&v=4'
+  }).then(instructor => {
+    instructor.setTopics(['react', 'redux']);
+  });
+
+  Instructor.create({
+    name: '',
+    fullName: '',
+    gitHub: '',
+    mainUrl: '',
+    image: ''
+  }).then(instructor => {
+    instructor.setTopics(['']);
+  });
+
+  Instructor.create({
+    name: '',
+    fullName: '',
+    gitHub: '',
+    mainUrl: '',
+    image: ''
+  }).then(instructor => {
+    instructor.setTopics(['']);
+  });
+
+  Instructor.create({
+    name: '',
+    fullName: '',
+    gitHub: '',
+    mainUrl: '',
+    image: ''
+  }).then(instructor => {
+    instructor.setTopics(['']);
+  });
+
+  Instructor.create({
+    name: '',
+    fullName: '',
+    gitHub: '',
+    mainUrl: '',
+    image: ''
+  }).then(instructor => {
+    instructor.setTopics(['']);
+  });
+
+  Instructor.create({
+    name: '',
+    fullName: '',
+    gitHub: '',
+    mainUrl: '',
+    image: ''
+  }).then(instructor => {
+    instructor.setTopics(['']);
+  });
+
+  Instructor.create({
+    name: '',
+    fullName: '',
+    gitHub: '',
+    mainUrl: '',
+    image: ''
+  }).then(instructor => {
+    instructor.setTopics(['']);
+  });
+
+  Instructor.create({
+    name: '',
+    fullName: '',
+    gitHub: '',
+    mainUrl: '',
+    image: ''
+  }).then(instructor => {
+    instructor.setTopics(['']);
+  });
 };
 
 var initInstructor = () => {

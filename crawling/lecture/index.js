@@ -282,6 +282,68 @@ var initializeLecture = () => {
   }).then(lecture => {
     lecture.setTopics(['node.js']);
   });
+
+  Lecture.create({
+    name: 'Getting Started with Redux',
+    url: 'https://egghead.io/courses/getting-started-with-redux',
+    screenshot:
+      'https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/025/full/EGH_Redux-New.png',
+    free: true,
+    instructor: 'gaearon'
+  }).then(lecture => {
+    lecture.setTopics(['']);
+    lecture.setInstructors(['gaearon']);
+  });
+
+  Lecture.create({
+    name: '',
+    url: '',
+    screenshot: '',
+    free: false,
+    instructor: ''
+  }).then(lecture => {
+    lecture.setTopics(['']);
+  });
+
+  Lecture.create({
+    name: '',
+    url: '',
+    screenshot: '',
+    free: false,
+    instructor: ''
+  }).then(lecture => {
+    lecture.setTopics(['']);
+  });
+
+  Lecture.create({
+    name: '',
+    url: '',
+    screenshot: '',
+    free: false,
+    instructor: ''
+  }).then(lecture => {
+    lecture.setTopics(['']);
+  });
+
+  Lecture.create({
+    name: '',
+    url: '',
+    screenshot: '',
+    free: false,
+    instructor: ''
+  }).then(lecture => {
+    lecture.setTopics(['']);
+  });
+
+  Lecture.create({
+    name: '',
+    url: '',
+    screenshot: '',
+    free: false,
+    instructor: ''
+  }).then(lecture => {
+    lecture.setTopics(['']);
+  });
 };
 
 var initLecture = () => {
