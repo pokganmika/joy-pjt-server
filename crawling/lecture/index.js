@@ -1,114 +1,155 @@
 var Lecture = require('../../models').Lecture;
 // var LectureTopic = require('../../models').LectureTopic;
 
+var generateRandomPicture = () => {
+  const pictures = [
+    'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+    'https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80',
+    'https://images.unsplash.com/photo-1529101091764-c3526daf38fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1782&q=80',
+    'https://images.unsplash.com/photo-1527427337751-fdca2f128ce5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+    'https://images.unsplash.com/photo-1505685296765-3a2736de412f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+    'https://images.unsplash.com/photo-1542373285-a85124c4f3e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+    'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80',
+    'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1366&q=80',
+    'https://images.unsplash.com/photo-1538251041490-6d69ea6ad775?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80',
+    'https://images.unsplash.com/photo-1526374870839-e155464bb9b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjIxMTIzfQ&auto=format&fit=crop&w=1350&q=80',
+    'https://images.unsplash.com/photo-1542903660-eedba2cda473?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+    'https://images.unsplash.com/photo-1489389944381-3471b5b30f04?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjIxMTIzfQ&auto=format&fit=crop&w=1350&q=80',
+    'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+    'https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
+    'https://images.unsplash.com/photo-1468070454955-c5b6932bd08d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+    'https://images.unsplash.com/photo-1520509414578-d9cbf09933a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=649&q=80',
+    'https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
+    'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjIxMTIzfQ&auto=format&fit=crop&w=1350&q=80'
+  ];
+
+  const randomIndex = Math.floor(Math.random() * pictures.length);
+  return pictures[randomIndex];
+};
+
 var initializeLecture = () => {
   Lecture.create({
     name: '초보자를 위한 바닐라 JavaScript',
     url: 'https://academy.nomadcoders.co/courses/enrolled/435558',
-    screenshot:
-      'https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/ySY5plO8Tay6VFtYnfD9',
+    // screenshot:      'https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/ySY5plO8Tay6VFtYnfD9',
+    screenshot: generateRandomPicture(),
     free: true,
     instructor: 'nicolas',
     lang: 'kor'
   }).then(lecture => {
     lecture.setTopics(['javascript']);
+    lecture.setInstructors(['nicolas']);
   });
 
   Lecture.create({
     name: 'JavaScript Basics for Beginners',
     url: 'https://codewithmosh.com/courses/enrolled/324741',
-    screenshot:
-      'https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/4JkBtVU9QUwcwFCWi3AV',
+    // screenshot:
+    //   'https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/4JkBtVU9QUwcwFCWi3AV',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'mosh'
   }).then(lecture => {
     lecture.setTopics(['javascript']);
+    lecture.setInstructors(['mosh']);
   });
 
   Lecture.create({
     name: 'ES6 for everyone!',
     url: 'https://es6.io/',
-    screenshot:
-      'https://steemitimages.com/DQmP18L6k8EMHNfsvRNaRFWvka2GnRo8b8CpDuM3hbYGnqp/ff3ywn-1-800x533.jpg',
+    // screenshot:
+    //   'https://steemitimages.com/DQmP18L6k8EMHNfsvRNaRFWvka2GnRo8b8CpDuM3hbYGnqp/ff3ywn-1-800x533.jpg',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'wesbos'
   }).then(lecture => {
     lecture.setTopics(['javascript']);
+    lecture.setInstructors(['wesbos']);
   });
 
   Lecture.create({
     name: 'javascript 30',
     url: 'https://javascript30.com/',
-    screenshot:
-      'https://steemitimages.com/DQmP18L6k8EMHNfsvRNaRFWvka2GnRo8b8CpDuM3hbYGnqp/ff3ywn-1-800x533.jpg',
+    // screenshot:
+    //   'https://steemitimages.com/DQmP18L6k8EMHNfsvRNaRFWvka2GnRo8b8CpDuM3hbYGnqp/ff3ywn-1-800x533.jpg',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'wesbos'
   }).then(lecture => {
     lecture.setTopics(['javascript']);
+    lecture.setInstructors(['wesbos']);
   });
 
   Lecture.create({
     name: 'Modern JavaScript',
     url: 'https://tylermcginnis.com/courses/react-fundamentals-udacity/',
-    screenshot:
-      'http://www.ddaily.co.kr/data/photos/20150313/art_1427325311.jpg',
+    // screenshot:
+    //   'http://www.ddaily.co.kr/data/photos/20150313/art_1427325311.jpg',
+    screenshot: generateRandomPicture(),
     free: true,
-    instructor: 'TylerMcGinnis'
+    instructor: 'tyler'
   }).then(lecture => {
     lecture.setTopics(['javascript']);
+    lecture.setInstructors(['tyler']);
   });
 
   Lecture.create({
     name: 'Node.js 교과서',
     url: 'https://www.inflearn.com/course/node-js-%EA%B5%90%EA%B3%BC%EC%84%9C/',
-    screenshot:
-      'https://mygaming.co.za/news/wp-content/uploads/2016/12/Code.jpg',
+    // screenshot:
+    //   'https://mygaming.co.za/news/wp-content/uploads/2016/12/Code.jpg',
+    screenshot: generateRandomPicture(),
     free: true,
     instructor: 'zerocho',
     lang: 'kor'
   }).then(lecture => {
     lecture.setTopics(['javascript']);
+    lecture.setInstructors(['zerocho']);
   });
 
   Lecture.create({
     name: 'Mastering React',
     url: 'https://codewithmosh.com/p/mastering-react',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'mosh',
     lang: 'eng'
   }).then(lecture => {
     lecture.setTopics(['react']);
+    lecture.setInstructors(['mosh']);
   });
 
   Lecture.create({
     name: 'The Complete Node.js Course',
     url: 'https://codewithmosh.com/p/the-complete-node-js-course',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'mosh',
     lang: 'eng'
   }).then(lecture => {
     lecture.setTopics(['node.js']);
+    lecture.setInstructors(['mosh']);
   });
 
   Lecture.create({
     name: '[초급 풀스택] 유튜브 클론 코딩',
     url:
       'https://academy.nomadcoders.co/p/javascript-fullstack-from-zero-to-hero',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'nicolas',
     lang: 'kor'
   }).then(lecture => {
     lecture.setTopics(['javascript', 'node.js', 'mongodb', 'aws', 'express']);
+    lecture.setInstructors(['nicolas']);
   });
 
   Lecture.create({
     name: '[JS 풀스택] 우버 클론 코딩',
     url:
       'https://academy.nomadcoders.co/p/nuber-fullstack-javascript-graphql-course',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'nicolas',
     lang: ''
@@ -121,173 +162,191 @@ var initializeLecture = () => {
       'apollo',
       'aws'
     ]);
+    lecture.setInstructors(['nicolas']);
   });
 
   Lecture.create({
     name: '초보자를 위한 바닐라 JavaScript',
     url:
       'https://academy.nomadcoders.co/p/javascript-basics-for-absolute-beginners-kr',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'nicolas',
     lang: 'kor'
   }).then(lecture => {
     lecture.setTopics(['javascript']);
+    lecture.setInstructors(['nicolas']);
   });
 
   Lecture.create({
     name: 'React Fundamentals',
     url: 'https://learn.tylermcginnis.com/courses/enrolled/50507',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'tyler'
   }).then(lecture => {
     lecture.setTopics(['react']);
+    lecture.setInstructors(['tyler']);
   });
 
   Lecture.create({
     name: 'redux',
     url: 'https://learn.tylermcginnis.com/courses/enrolled/294390',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'tyler'
   }).then(lecture => {
     lecture.setTopics(['redux']);
+    lecture.setInstructors(['tyler']);
   });
 
   Lecture.create({
     name: 'React Router',
     url: 'https://learn.tylermcginnis.com/courses/enrolled/147194',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'tyler'
   }).then(lecture => {
     lecture.setTopics(['react']);
+    lecture.setInstructors(['tyler']);
   });
 
   Lecture.create({
     name: 'React Native (Udacity)',
     url: 'https://learn.tylermcginnis.com/courses/enrolled/336438',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'tyler',
     lang: ''
   }).then(lecture => {
     lecture.setTopics(['reactnative']);
+    lecture.setInstructors(['tyler']);
   });
 
   Lecture.create({
     name: 'React Fundamentals (Udacity)',
     url: 'https://learn.tylermcginnis.com/courses/enrolled/336610',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'tyler',
     lang: ''
   }).then(lecture => {
     lecture.setTopics(['react']);
+    lecture.setInstructors(['tyler']);
   });
 
   Lecture.create({
     name: 'CSS GRID',
     url: 'https://cssgrid.io/',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'wesbos'
   }).then(lecture => {
     lecture.setTopics(['css']);
+    lecture.setInstructors(['wesbos']);
   });
 
   Lecture.create({
     name: 'Learn node',
     url: 'https://learnnode.com/',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
-    instructor: 'wesbox',
+    instructor: 'wesbos',
     lang: ''
   }).then(lecture => {
     lecture.setTopics(['node.js']);
+    lecture.setInstructors(['wesbos']);
   });
 
   Lecture.create({
     name: 'Learn Redux',
     url: 'https://learnredux.com/',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'wesbos'
   }).then(lecture => {
     lecture.setTopics(['redux']);
+    lecture.setInstructors(['wesbos']);
   });
 
   Lecture.create({
     name: 'Modern React with Redux [2019 Update]',
     url: 'https://www.udemy.com/react-redux/?couponCode=4MORE1234',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'stephen'
   }).then(lecture => {
     lecture.setTopics(['react', 'redux']);
+    lecture.setInstructors(['stephen']);
   });
 
   Lecture.create({
     name: "ES6 Javascript: The Complete Developer's Guide",
     url: 'https://www.udemy.com/javascript-es6-tutorial/?couponCode=4MORE1234',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'stephen',
     lang: ''
   }).then(lecture => {
     lecture.setTopics(['javascript']);
+    lecture.setInstructors(['stephen']);
   });
 
   Lecture.create({
     name: 'Advanced React and Redux: 2018 Edition',
     url: 'https://www.udemy.com/react-redux-tutorial/?couponCode=4MORE1234',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'stephen'
   }).then(lecture => {
     lecture.setTopics(['react', 'redux']);
+    lecture.setInstructors(['stephen']);
   });
 
   Lecture.create({
     name: 'GraphQL with React: The Complete Developers Guide',
     url:
       'https://www.udemy.com/graphql-with-react-course/?couponCode=4MORE1234',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'stephen',
     lang: ''
   }).then(lecture => {
     lecture.setTopics(['graphql', 'react']);
+    lecture.setInstructors(['stephen']);
   });
 
   Lecture.create({
     name: 'The Coding Interview Bootcamp: Algorithms + Data Structures',
     url:
       'https://www.udemy.com/coding-interview-bootcamp-algorithms-and-data-structure/?couponCode=4more1234',
-    screenshot: '',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'stephen'
   }).then(lecture => {
     lecture.setTopics(['algorithm']);
+    lecture.setInstructors(['stephen']);
   });
 
   Lecture.create({
     name: 'The Node.js Master Class',
     url: 'https://pirple.thinkific.com/courses/the-nodejs-master-class',
-    screenshot:
-      'https://s3.amazonaws.com/thinkific-import/116598/iFxOskqYSuy4Ll2AIJOM_node.png',
+    // screenshot:
+    //   'https://s3.amazonaws.com/thinkific-import/116598/iFxOskqYSuy4Ll2AIJOM_node.png',
+    screenshot: generateRandomPicture(),
     free: false,
     instructor: 'pirple'
   }).then(lecture => {
     lecture.setTopics(['node.js']);
+    lecture.setInstructors(['pirple']);
   });
 
   Lecture.create({
     name: 'Getting Started with Redux',
     url: 'https://egghead.io/courses/getting-started-with-redux',
-    screenshot:
-      'https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/025/full/EGH_Redux-New.png',
+    // screenshot:
+    //   'https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/025/full/EGH_Redux-New.png',
+    screenshot: generateRandomPicture(),
     free: true,
     instructor: 'gaearon'
   }).then(lecture => {
