@@ -97,4 +97,6 @@ DROP TABLE InstructorTopic;
 DROP TABLE LectureTopic;
 DROP TABLE lectures_instructors;
 DROP TABLE lectures_topics;
+DROP TABLE books;
+DROP TABLE BookTopic;
 SET foreign_key_checks = 1;
