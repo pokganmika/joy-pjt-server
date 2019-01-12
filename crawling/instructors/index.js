@@ -37,7 +37,7 @@ var initializeInstructors = () => {
     mainUrl: 'https://wesbos.com/',
     image: 'https://avatars2.githubusercontent.com/u/176013?s=460&v=4'
   }).then(instructor => {
-    instructor.setTopics(['javascript', 'node.js']);
+    instructor.setTopics(['javascript', 'node.js', 'react', 'redux']);
     instructor.setLectures([
       'ES6 for everyone!',
       'javascript 30',
@@ -53,7 +53,7 @@ var initializeInstructors = () => {
     mainUrl: 'https://tylermcginnis.com/',
     image: 'https://avatars1.githubusercontent.com/u/2933430?s=460&v=4'
   }).then(instructor => {
-    instructor.setTopics(['react']);
+    instructor.setTopics(['react'], ['redux']);
     instructor.setLectures([
       'Modern JavaScript',
       'React Fundamentals',
