@@ -21,7 +21,17 @@ var generateRandomPicture = () => {
     'https://images.unsplash.com/photo-1468070454955-c5b6932bd08d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
     'https://images.unsplash.com/photo-1520509414578-d9cbf09933a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=649&q=80',
     'https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
-    'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjIxMTIzfQ&auto=format&fit=crop&w=1350&q=80'
+    'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjIxMTIzfQ&auto=format&fit=crop&w=1350&q=80',
+    'https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+    'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2294&q=80',
+    'https://images.unsplash.com/photo-1542903660-eedba2cda473?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+    'https://images.unsplash.com/photo-1504164996022-09080787b6b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+    'https://images.unsplash.com/photo-1542831371-d531d36971e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+    'https://images.unsplash.com/photo-1509966756634-9c23dd6e6815?ixlib=rb-1.2.1&auto=format&fit=crop&w=1310&q=80',
+    'https://images.unsplash.com/photo-1542831371-32f555c86880?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+    'https://images.unsplash.com/photo-1533709752211-118fcaf03312?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80',
+    'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80',
+    'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80'
   ];
 
   const randomIndex = Math.floor(Math.random() * pictures.length);
@@ -104,7 +114,7 @@ var initializeLecture = () => {
     instructor: 'zerocho',
     lang: 'kor'
   }).then(lecture => {
-    lecture.setTopics(['javascript']);
+    lecture.setTopics(['javascript', 'node.js']);
     lecture.setInstructors(['zerocho']);
   });
 
@@ -355,43 +365,49 @@ var initializeLecture = () => {
   });
 
   Lecture.create({
-    name: '',
-    url: '',
-    screenshot: '',
-    free: false,
-    instructor: ''
+    name: 'The Web Developer Bootcamp',
+    url: 'https://www.udemy.com/the-web-developer-bootcamp/',
+    screenshot:
+      'https://udemy-images.udemy.com/course/480x270/625204_436a_2.jpg',
+    free: false
   }).then(lecture => {
     lecture.setTopics(['']);
+    lecture.setInstructors(['colt']);
   });
 
   Lecture.create({
-    name: '',
-    url: '',
-    screenshot: '',
-    free: false,
-    instructor: ''
+    name: 'The Advanced Web Developer Bootcamp',
+    url: 'https://www.udemy.com/the-advanced-web-developer-bootcamp/',
+    screenshot:
+      'https://udemy-images.udemy.com/course/480x270/1218586_9f86.jpg',
+    free: false
   }).then(lecture => {
     lecture.setTopics(['']);
+    lecture.setInstructors(['colt']);
   });
 
   Lecture.create({
-    name: '',
-    url: '',
-    screenshot: '',
-    free: false,
-    instructor: ''
+    name: 'JavaScript Algorithms and Data Structures Masterclass',
+    url: 'https://www.udemy.com/js-algorithms-and-data-structures-masterclass/',
+    screenshot:
+      'https://udemy-images.udemy.com/course/480x270/1406344_1d65_3.jpg',
+    free: false
   }).then(lecture => {
-    lecture.setTopics(['']);
+    lecture.setTopics(['javascript', 'algorithm']);
+    lecture.setInstructors(['colt']);
   });
 
   Lecture.create({
-    name: '',
-    url: '',
-    screenshot: '',
+    name: '자바스크립트로 알아보는 함수형 프로그래밍',
+    url:
+      'https://www.inflearn.com/course/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/',
+    screenshot:
+      'https://d81pi4yofp37g.cloudfront.net/wp-content/uploads/functional-programming.png',
     free: false,
     instructor: ''
   }).then(lecture => {
-    lecture.setTopics(['']);
+    lecture.setTopics(['javascript', 'functional']);
+    lecture.setInstructors(['유인동']);
   });
 
   Lecture.create({

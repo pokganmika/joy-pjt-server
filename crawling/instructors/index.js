@@ -3,6 +3,7 @@ var Instructor = require('../../models').Instructor;
 var initializeInstructors = () => {
   Instructor.create({
     name: 'nicolas',
+    fullName: 'Nicolás Serrano Arévalo',
     mainUrl: 'https://academy.nomadcoders.co/',
     gitHub: 'https://github.com/serranoarevalo',
     image: 'https://www.filepicker.io/api/file/Hfn2brfS1jwMefqbZrOQ'
@@ -17,6 +18,7 @@ var initializeInstructors = () => {
 
   Instructor.create({
     name: 'mosh',
+    fullName: 'Mosh Hamedani',
     gitHub: 'https://github.com/mosh-hamedani',
     mainUrl: 'https://codewithmosh.com/',
     image:
@@ -234,23 +236,24 @@ var initializeInstructors = () => {
   });
 
   Instructor.create({
-    name: '',
-    fullName: '',
-    gitHub: '',
-    mainUrl: '',
-    image: ''
+    name: 'colt',
+    fullName: 'Colt Steele',
+    gitHub: 'https://github.com/Colt',
+    mainUrl: 'https://www.udemy.com/user/coltsteele/',
+    image: 'https://avatars1.githubusercontent.com/u/5498438?s=460&v=4'
   }).then(instructor => {
-    instructor.setTopics(['']);
+    instructor.setTopics(['javascript']);
   });
 
   Instructor.create({
-    name: '',
+    name: '유인동',
     fullName: '',
-    gitHub: '',
-    mainUrl: '',
-    image: ''
+    gitHub: 'https://github.com/indongyoo',
+    mainUrl: 'https://www.inflearn.com/members/marpple_dev/',
+    image: 'https://avatars1.githubusercontent.com/u/13637350?s=460&v=4',
+    lang: 'kor'
   }).then(instructor => {
-    instructor.setTopics(['']);
+    instructor.setTopics(['javascript', 'functional']);
   });
 
   Instructor.create({
