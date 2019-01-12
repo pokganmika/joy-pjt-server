@@ -82,6 +82,7 @@ db.User.generateAvatar = async seedForAvatar => {
 db.Lecture = require('./lecture')(sequelize, Sequelize);
 db.Instructor = require('./instructor')(sequelize, Sequelize);
 db.Course = require('./course')(sequelize, Sequelize);
+db.Book = require('./book')(sequelize, Sequelize);
 // ETC
 db.Comment = require('./comment')(sequelize, Sequelize);
 db.Hashtag = require('./hashtag')(sequelize, Sequelize);
@@ -92,8 +93,14 @@ db.Instructor.belongsToMany(db.Topic, { through: 'InstructorTopic' });
 db.Topic.belongsToMany(db.Instructor, { through: 'InstructorTopic' });
 db.Lecture.belongsToMany(db.Topic, { through: 'LectureTopic' });
 db.Topic.belongsToMany(db.Lecture, { through: 'LectureTopic' });
+db.Book.belongsToMany(db.Topic, { through: 'BookTopic' });
+db.Topic.belongsToMany(db.Book, { through: 'BookTopic' });
+
 db.Instructor.belongsToMany(db.Lecture, { through: 'InstructorLecture' });
 db.Lecture.belongsToMany(db.Instructor, { through: 'InstructorLecture' });
+db.Instructor.belongsToMany(db.Book, { through: 'BookLecture' });
+db.Book.belongsToMany(db.Instructor, { through: 'BookLecture' });
+
 // db.Course.belongsToMany(db.Topic, { through: 'CourseTopic' });
 // db.Topic.belongsToMany(db.Course, { through: 'CourseTopic' });
 

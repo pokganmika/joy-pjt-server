@@ -1,11 +1,13 @@
 const initializeTopics = require('./topic');
 const initializeInstructors = require('./instructors');
-const InitializeLecture = require('./lecture');
+const initializeLecture = require('./lecture');
+const initializeBook = require('./book');
 
 var initDb = () => {
   initializeTopics();
   initializeInstructors();
-  InitializeLecture();
+  initializeLecture();
+  initializeBook();
 };
 
 initDb();

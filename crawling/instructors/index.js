@@ -164,25 +164,27 @@ var initializeInstructors = () => {
   });
 
   Instructor.create({
-    name: '',
+    name: 'Douglas Crockford',
     fullName: '',
     gitHub: '',
-    mainUrl: '',
-    image: ''
+    mainUrl:
+      'https://www.amazon.com/Douglas-Crockford/e/B002N3VYB6/ref=dp_byline_cont_book_1',
+    image:
+      'https://images-na.ssl-images-amazon.com/images/I/A1yTSClLRPL._US230_.jpg'
   }).then(instructor => {
-    instructor.setTopics(['']);
-    instructor.setLectures([]);
+    instructor.setTopics(['javascript']);
   });
 
   Instructor.create({
-    name: '',
+    name: 'David Flanagan',
     fullName: '',
     gitHub: '',
-    mainUrl: '',
-    image: ''
+    mainUrl:
+      'https://www.amazon.com/David-Flanagan/e/B000APEZR4/ref=dp_byline_cont_book_1',
+    image:
+      'https://images-na.ssl-images-amazon.com/images/I/61ONpOKBYiL._US230_.jpg'
   }).then(instructor => {
-    instructor.setTopics(['']);
-    instructor.setLectures([]);
+    instructor.setTopics(['javascript']);
   });
 
   Instructor.create({
