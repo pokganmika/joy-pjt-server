@@ -27,69 +27,73 @@ var initializeLecture = () => {
   });
 
   Book.create({
-    name: '',
-    url: '',
-    screenshot: '',
-    free: true,
-    lang: 'kor'
+    name: 'JavaScript and JQuery: Interactive Front-End Web Development',
+    url:
+      'https://www.amazon.com/gp/product/1118531647/ref=dbs_a_def_rwt_bibl_vppi_i2',
+    screenshot:
+      'https://images-na.ssl-images-amazon.com/images/I/41y31M-zcgL._SX400_BO1,204,203,200_.jpg',
+    free: false
   }).then(lecture => {
     lecture.setTopics(['javascript']);
-    lecture.setInstructors(['']);
+    lecture.setInstructors(['Jon Duckett']);
   });
 
   Book.create({
-    name: '',
-    url: '',
+    name: 'HTML and CSS: Design and Build Websites',
+    url:
+      'https://www.amazon.com/gp/product/1118008189/ref=dbs_a_def_rwt_bibl_vppi_i1',
     screenshot: '',
-    free: true,
-    lang: 'kor'
+    free: false
   }).then(lecture => {
-    lecture.setTopics(['javascript']);
-    lecture.setInstructors(['']);
+    lecture.setTopics(['html', 'css']);
+    lecture.setInstructors(['Jon Duckett']);
   });
 
   Book.create({
-    name: '',
-    url: '',
-    screenshot: '',
-    free: true,
-    lang: 'kor'
+    name: 'Eloquent JavaScript',
+    url:
+      'https://www.amazon.com/gp/product/1593279507/ref=dbs_a_def_rwt_bibl_vppi_i0',
+    screenshot:
+      'https://images-na.ssl-images-amazon.com/images/I/51I9naPg55L._SX376_BO1,204,203,200_.jpg',
+    free: false
   }).then(lecture => {
     lecture.setTopics(['javascript']);
-    lecture.setInstructors(['']);
+    lecture.setInstructors(['Marijn Haverbeke']);
   });
 
   Book.create({
-    name: '',
-    url: '',
-    screenshot: '',
-    free: true,
-    lang: 'kor'
+    name: "You Don't Know JS: Up & Going",
+    url:
+      'https://www.amazon.com/gp/product/1491924462/ref=dbs_a_def_rwt_bibl_vppi_i0',
+    screenshot:
+      'https://images-na.ssl-images-amazon.com/images/I/41FhogvNebL._SX331_BO1,204,203,200_.jpg',
+    free: false
   }).then(lecture => {
     lecture.setTopics(['javascript']);
-    lecture.setInstructors(['']);
+    lecture.setInstructors(['Kyle Simpson']);
   });
 
   Book.create({
-    name: '',
-    url: '',
+    name: "You Don't Know JS: Scope & Closures",
+    url:
+      'https://www.amazon.com/gp/product/1449335586/ref=dbs_a_def_rwt_bibl_vppi_i1',
     screenshot: '',
-    free: true,
-    lang: 'kor'
+    free: false
   }).then(lecture => {
     lecture.setTopics(['javascript']);
-    lecture.setInstructors(['']);
+    lecture.setInstructors(['Kyle Simpson']);
   });
 
   Book.create({
-    name: '',
-    url: '',
-    screenshot: '',
-    free: true,
-    lang: 'kor'
+    name: "You Don't Know JS: Async & Performance",
+    url:
+      'https://www.amazon.com/gp/product/1491904224/ref=dbs_a_def_rwt_bibl_vppi_i2',
+    screenshot:
+      'https://images-na.ssl-images-amazon.com/images/I/51Kb27EcNPL._SX331_BO1,204,203,200_.jpg',
+    free: false
   }).then(lecture => {
     lecture.setTopics(['javascript']);
-    lecture.setInstructors(['']);
+    lecture.setInstructors(['Kyle Simpson']);
   });
 };
 
