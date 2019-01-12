@@ -188,36 +188,39 @@ var initializeInstructors = () => {
   });
 
   Instructor.create({
-    name: '',
+    name: 'Jon Duckett',
     fullName: '',
     gitHub: '',
-    mainUrl: '',
-    image: ''
+    mainUrl:
+      'https://www.amazon.com/Jon-Duckett/e/B001IR3Q7I/ref=dp_byline_cont_book_1',
+    image:
+      'https://m.media-amazon.com/images/G/01/author-pages/no-profile-image-placeholder-na._CB484118601_.png'
   }).then(instructor => {
-    instructor.setTopics(['']);
-    instructor.setLectures([]);
+    instructor.setTopics(['javascript']);
   });
 
   Instructor.create({
-    name: '',
+    name: 'Marijn Haverbeke',
     fullName: '',
     gitHub: '',
-    mainUrl: '',
-    image: ''
+    mainUrl:
+      'https://www.amazon.com/Marijn-Haverbeke/e/B00409LR2W/ref=dp_byline_cont_book_1',
+    image:
+      'https://m.media-amazon.com/images/G/01/author-pages/no-profile-image-placeholder-na._CB484118601_.png'
   }).then(instructor => {
-    instructor.setTopics(['']);
-    instructor.setLectures([]);
+    instructor.setTopics(['javascript']);
   });
 
   Instructor.create({
-    name: '',
+    name: 'Kyle Simpson',
     fullName: '',
     gitHub: '',
-    mainUrl: '',
-    image: ''
+    mainUrl:
+      'https://www.amazon.com/Kyle-Simpson/e/B006MAHIQ6/ref=dp_byline_cont_ebooks_1',
+    image:
+      'https://images-na.ssl-images-amazon.com/images/I/81MKAs6ZvjL._US230_.jpg'
   }).then(instructor => {
-    instructor.setTopics(['']);
-    instructor.setLectures([]);
+    instructor.setTopics(['javascript']);
   });
 };
 
