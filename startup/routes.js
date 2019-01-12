@@ -19,12 +19,12 @@ const error = require('../middleware/error');
 
 const topics = require('../routes/topics');
 const topicTopic = require('../routes/topicTopic');
+const instructorTopic = require('../routes/instructorTopic');
+const lectureTopic = require('../routes/lectureTopic');
+const bookTopic = require('../routes/bookTopic');
 
 const instructor = require('../routes/instructor');
 const lecture = require('../routes/lecture');
-
-const instructorTopic = require('../routes/instructorTopic');
-const lectureTopic = require('../routes/lectureTopic');
 
 const api = require('../routes/api');
 // MySQL
@@ -69,6 +69,7 @@ module.exports = function (app) {
   app.use('/t', topicTopic);
   app.use('/i', instructorTopic);
   app.use('/l', lectureTopic);
+  app.use('/b', bookTopic);
 
   app.use('/instructor', instructor);
   app.use('/lecture', lecture);
