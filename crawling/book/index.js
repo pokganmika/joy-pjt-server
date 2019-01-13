@@ -77,7 +77,8 @@ var initializeLecture = () => {
     name: "You Don't Know JS: Scope & Closures",
     url:
       'https://www.amazon.com/gp/product/1449335586/ref=dbs_a_def_rwt_bibl_vppi_i1',
-    screenshot: '',
+    screenshot:
+      'https://images-na.ssl-images-amazon.com/images/I/51SqAlfxJiL._SX331_BO1,204,203,200_.jpg',
     free: false
   }).then(lecture => {
     lecture.setTopics(['javascript']);
