@@ -6,6 +6,7 @@ const { Instructor } = require('../models');
 const { Lecture } = require('../models');
 const { Comment } = require('../models');
 const { User } = require('../models');
+const { Book } = require('../models');
 const { db } = require('../models');
 
 // router.get('/', async function (req, res, next) {
@@ -46,6 +47,17 @@ router.get('/:instructorId', async function (req, res, next) {
     ]
   });
   result['lectures'] = lectures;
+
+  const books = await Book.findAll({
+    attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
+    include: [
+      {
+        model: Instructor,
+        where: { name: instructorId }
+      }
+    ]
+  });
+  result['books'] = books;
 
   res.send(result);
 });
