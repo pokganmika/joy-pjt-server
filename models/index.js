@@ -88,7 +88,9 @@ db.Comment = require('./comment')(sequelize, Sequelize);
 db.Hashtag = require('./hashtag')(sequelize, Sequelize);
 db.Topic = require('./topic')(sequelize, Sequelize);
 // Review
-db.Reviewbook = require('./reviewbook')(sequelize, Sequelize);
+db.ReviewBook = require('./reviewBook')(sequelize, Sequelize);
+db.ReviewInstructor = require('./reviewInstructor')(sequelize, Sequelize);
+db.ReviewLecture = require('./reviewLecture')(sequelize, Sequelize);
 
 // Topic = { lecture, instructor, course }= N : M
 db.Instructor.belongsToMany(db.Topic, { through: 'InstructorTopic' });
@@ -104,10 +106,24 @@ db.Instructor.belongsToMany(db.Book, { through: 'BookLecture' });
 db.Book.belongsToMany(db.Instructor, { through: 'BookLecture' });
 
 // Review
-db.User.belongsToMany(db.Reviewbook, { through: 'UserReviewbook' });
-db.Reviewbook.belongsToMany(db.User, { through: 'UserReviewbook' });
-db.Book.belongsToMany(db.Reviewbook, { through: 'BookReviewbook' });
-db.Reviewbook.belongsToMany(db.Book, { through: 'BookReviewbook' });
+db.User.belongsToMany(db.ReviewBook, { through: 'UserReviewBook' });
+db.ReviewBook.belongsToMany(db.User, { through: 'UserReviewBook' });
+db.Book.belongsToMany(db.ReviewBook, { through: 'BookReviewBook' });
+db.ReviewBook.belongsToMany(db.Book, { through: 'BookReviewBook' });
+
+db.User.belongsToMany(db.ReviewInstructor, { through: 'UserReviewInstructor' });
+db.ReviewInstructor.belongsToMany(db.User, { through: 'UserReviewInstructor' });
+db.Instructor.belongsToMany(db.ReviewInstructor, {
+  through: 'InstructorReviewInstructor'
+});
+db.ReviewInstructor.belongsToMany(db.Instructor, {
+  through: 'InstructorReviewInstructor'
+});
+
+db.User.belongsToMany(db.ReviewLecture, { through: 'UserReviewLecture' });
+db.ReviewLecture.belongsToMany(db.User, { through: 'UserReviewLecture' });
+db.Lecture.belongsToMany(db.ReviewLecture, { through: 'LectureReviewLecture' });
+db.ReviewLecture.belongsToMany(db.Lecture, { through: 'LectureReviewLecture' });
 
 // db.Course.belongsToMany(db.Topic, { through: 'CourseTopic' });
 // db.Topic.belongsToMany(db.Course, { through: 'CourseTopic' });

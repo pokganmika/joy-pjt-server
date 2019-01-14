@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     'user',
     {
-      name: { type: DataTypes.STRING(255), allowNull: true },
+      name: { type: DataTypes.STRING(255), primaryKey: true, allowNull: true },
+      fullName: { type: DataTypes.STRING(255), allowNull: true },
       email: { type: DataTypes.STRING(100), allowNull: true },
       password: { type: DataTypes.STRING(255), allowNull: true },
       isAdmin: {
