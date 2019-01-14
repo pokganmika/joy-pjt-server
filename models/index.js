@@ -88,7 +88,7 @@ db.Comment = require('./comment')(sequelize, Sequelize);
 db.Hashtag = require('./hashtag')(sequelize, Sequelize);
 db.Topic = require('./topic')(sequelize, Sequelize);
 // Review
-db.ReviewBook = require('./reviewBook')(sequelize, Sequelize);
+db.ReviewBook = require('./reviewbook')(sequelize, Sequelize);
 db.ReviewInstructor = require('./reviewInstructor')(sequelize, Sequelize);
 db.ReviewLecture = require('./reviewLecture')(sequelize, Sequelize);
 
