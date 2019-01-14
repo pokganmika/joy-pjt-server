@@ -87,6 +87,8 @@ db.Book = require('./book')(sequelize, Sequelize);
 db.Comment = require('./comment')(sequelize, Sequelize);
 db.Hashtag = require('./hashtag')(sequelize, Sequelize);
 db.Topic = require('./topic')(sequelize, Sequelize);
+// Review
+db.Reviewbook = require('./reviewbook')(sequelize, Sequelize);
 
 // Topic = { lecture, instructor, course }= N : M
 db.Instructor.belongsToMany(db.Topic, { through: 'InstructorTopic' });
@@ -100,6 +102,12 @@ db.Lecture.belongsToMany(db.Instructor, { through: 'LectureInstructor' });
 db.Instructor.belongsToMany(db.Lecture, { through: 'LectureInstructor' });
 db.Instructor.belongsToMany(db.Book, { through: 'BookLecture' });
 db.Book.belongsToMany(db.Instructor, { through: 'BookLecture' });
+
+// Review
+db.User.belongsToMany(db.Reviewbook, { through: 'UserReviewbook' });
+db.Reviewbook.belongsToMany(db.User, { through: 'UserReviewbook' });
+db.Book.belongsToMany(db.Reviewbook, { through: 'BookReviewbook' });
+db.Reviewbook.belongsToMany(db.Book, { through: 'BookReviewbook' });
 
 // db.Course.belongsToMany(db.Topic, { through: 'CourseTopic' });
 // db.Topic.belongsToMany(db.Course, { through: 'CourseTopic' });

@@ -39,11 +39,19 @@ router.post('/:type/:name', (req, res) => {
   }
   */
 
-  Comment.create({
-    writer: req.body.writer,
-    content: req.body.content,
-    instructor_name: name
-  });
+  if (type === 'instructor') {
+    Comment.create({
+      writer: req.body.writer,
+      content: req.body.content,
+      instructor_name: name
+    });
+  } else if (type === 'lecture') {
+    Comment.create({
+      writer: req.body.writer,
+      content: req.body.content,
+      lecture_name: name
+    });
+  }
   // .then(comment => {
   //   if (type === 'instructor') {
   //     comment.setInstructors([name]);
