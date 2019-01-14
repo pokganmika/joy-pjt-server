@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'reviewBook',
+    'reviewInstructor',
     {
       writer: { type: DataTypes.STRING(255), allowNull: false },
       review: { type: DataTypes.INTEGER, allowNull: false }
