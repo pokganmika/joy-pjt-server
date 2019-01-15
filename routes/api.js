@@ -78,6 +78,16 @@ router.post('/review/:type/:name', async (req, res) => {
 
     res.send(reviews);
   } else if (type === 'lecture') {
+    const review = await Review.create({
+      writer: req.body.writer,
+      review: req.body.review,
+      lecture_name: name
+    });
+
+    const reviews = await Review.findAll({ where: { lecture_name: name } });
+    console.log('[+] reviews = ', reviews);
+
+    res.send(reviews);
   } else if (type === 'book') {
   }
 

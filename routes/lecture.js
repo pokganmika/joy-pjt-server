@@ -3,31 +3,42 @@ var router = express.Router();
 
 const { Lecture } = require('../models');
 const { Instructor } = require('../models');
+const { Comment } = require('../models');
+const { Review } = require('../models');
 
 router.get('/:lectureId', async function (req, res, next) {
   const { lectureId } = req.params;
   let result = {};
 
-  Lecture.findAll({
+  const lecture = await Lecture.findAll({
     where: { name: lectureId },
     attributes: ['name', 'url', 'screenshot', 'free', 'lang']
-  }).then(lecture => {
-    result['lecture'] = lecture;
-
-    Instructor.findAll({
-      attributes: ['name', 'fullName', 'gitHub', 'mainUrl', 'image', 'lang'],
-      include: [
-        {
-          model: Lecture,
-          where: { name: lectureId }
-        }
-      ]
-    }).then(instructor => {
-      result['instructor'] = instructor;
-
-      res.send(result);
-    });
   });
+
+  result['lecture'] = lecture;
+
+  const instructor = await Instructor.findAll({
+    attributes: ['name', 'fullName', 'gitHub', 'mainUrl', 'image', 'lang'],
+    include: [
+      {
+        model: Lecture,
+        where: { name: lectureId }
+      }
+    ]
+  });
+  result['instructor'] = instructor;
+
+  const comments = await Comment.findAll({
+    where: { lecture_name: lectureId }
+  });
+  result['comments'] = comments;
+
+  const reviews = await Review.findAll({
+    where: { lecture_name: lectureId }
+  });
+  result['reviews'] = reviews;
+
+  res.send(result);
 });
 
 module.exports = router;
