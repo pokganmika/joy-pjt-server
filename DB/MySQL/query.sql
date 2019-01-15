@@ -110,4 +110,5 @@ DROP TABLE reviewBooks;
 DROP TABLE LectureReviewLecture;
 DROP TABLE reviewLectures;
 DROP TABLE UserReviewLecture;
+DROP TABLE reviews;
 SET foreign_key_checks = 1;
