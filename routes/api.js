@@ -4,6 +4,7 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const { Comment } = require('../models');
 const { User } = require('../models');
+const { Review } = require('../models');
 const { Instructor } = require('../models');
 const { Lecture } = require('../models');
 const { ReviewInstructor } = require('../models');
@@ -55,12 +56,32 @@ router.post('/comment/:type/:name', (req, res) => {
   // res.send('ok');
 });
 
-router.post('/review/:type/:name', (req, res) => {
+router.post('/review/:type/:name', async (req, res) => {
   const { type, name } = req.params;
   console.log('[+] /api/:type/:name', type, name);
 
   console.log(req.body);
 
+  if (type === 'instructor') {
+    const review = await Review.create({
+      writer: req.body.writer,
+      review: req.body.review,
+      instructor_name: name
+    });
+
+    const reviews = await Review.findAll({
+      where: {
+        instructor_name: name
+      }
+    });
+    console.log('[+] reviews = ', reviews);
+
+    res.send(reviews);
+  } else if (type === 'lecture') {
+  } else if (type === 'book') {
+  }
+
+  /*
   if (type === 'instructor') {
     ReviewInstructor.create({
       writer: req.body.writer,
@@ -83,6 +104,7 @@ router.post('/review/:type/:name', (req, res) => {
       user.setReviewLectures([req.body.review]);
     });
   }
+*/
 
   /*
   if (type === 'instructor') {
@@ -105,7 +127,7 @@ router.post('/review/:type/:name', (req, res) => {
   }
   */
 
-  res.send('OK');
+  // res.send('OK');
 });
 
 module.exports = router;

@@ -88,9 +88,10 @@ db.Comment = require('./comment')(sequelize, Sequelize);
 db.Hashtag = require('./hashtag')(sequelize, Sequelize);
 db.Topic = require('./topic')(sequelize, Sequelize);
 // Review
-db.ReviewBook = require('./reviewbook')(sequelize, Sequelize);
-db.ReviewInstructor = require('./reviewInstructor')(sequelize, Sequelize);
-db.ReviewLecture = require('./reviewLecture')(sequelize, Sequelize);
+db.Review = require('./review')(sequelize, Sequelize);
+// db.ReviewBook = require('./reviewbook')(sequelize, Sequelize);
+// db.ReviewInstructor = require('./reviewInstructor')(sequelize, Sequelize);
+// db.ReviewLecture = require('./reviewLecture')(sequelize, Sequelize);
 
 // Topic = { lecture, instructor, course }= N : M
 db.Instructor.belongsToMany(db.Topic, { through: 'InstructorTopic' });
@@ -106,27 +107,30 @@ db.Instructor.belongsToMany(db.Book, { through: 'BookLecture' });
 db.Book.belongsToMany(db.Instructor, { through: 'BookLecture' });
 
 // Review
-db.User.belongsToMany(db.ReviewBook, { through: 'UserReviewBook' });
-db.ReviewBook.belongsToMany(db.User, { through: 'UserReviewBook' });
-db.Book.belongsToMany(db.ReviewBook, { through: 'BookReviewBook' });
-db.ReviewBook.belongsToMany(db.Book, { through: 'BookReviewBook' });
-
-db.User.belongsToMany(db.ReviewInstructor, { through: 'UserReviewInstructor' });
-db.ReviewInstructor.belongsToMany(db.User, { through: 'UserReviewInstructor' });
-db.Instructor.belongsToMany(db.ReviewInstructor, {
-  through: 'InstructorReviewInstructor'
-});
-db.ReviewInstructor.belongsToMany(db.Instructor, {
-  through: 'InstructorReviewInstructor'
-});
-
-db.User.belongsToMany(db.ReviewLecture, { through: 'UserReviewLecture' });
-db.ReviewLecture.belongsToMany(db.User, { through: 'UserReviewLecture' });
-db.Lecture.belongsToMany(db.ReviewLecture, { through: 'LectureReviewLecture' });
-db.ReviewLecture.belongsToMany(db.Lecture, { through: 'LectureReviewLecture' });
-
-// db.Course.belongsToMany(db.Topic, { through: 'CourseTopic' });
-// db.Topic.belongsToMany(db.Course, { through: 'CourseTopic' });
+// db.User.belongsToMany(db.ReviewBook, { through: 'UserReviewBook' });
+// db.ReviewBook.belongsToMany(db.User, { through: 'UserReviewBook' });
+// db.Book.belongsToMany(db.ReviewBook, { through: 'BookReviewBook' });
+// db.ReviewBook.belongsToMany(db.Book, { through: 'BookReviewBook' });
+// db.User.belongsToMany(db.ReviewInstructor, { through: 'UserReviewInstructor' });
+// db.ReviewInstructor.belongsToMany(db.User, { through: 'UserReviewInstructor' });
+// db.Instructor.belongsToMany(db.ReviewInstructor, {
+//   through: 'InstructorReviewInstructor'
+// });
+// db.ReviewInstructor.belongsToMany(db.Instructor, {
+//   through: 'InstructorReviewInstructor'
+// });
+// db.User.belongsToMany(db.ReviewLecture, { through: 'UserReviewLecture' });
+// db.ReviewLecture.belongsToMany(db.User, { through: 'UserReviewLecture' });
+// db.Lecture.belongsToMany(db.ReviewLecture, { through: 'LectureReviewLecture' });
+// db.ReviewLecture.belongsToMany(db.Lecture, { through: 'LectureReviewLecture' });
+db.Instructor.hasMany(db.Review);
+db.Review.belongsTo(db.Instructor);
+db.Lecture.hasMany(db.Review);
+db.Review.belongsTo(db.Lecture);
+db.Course.hasMany(db.Review);
+db.Review.belongsTo(db.Course);
+db.User.hasMany(db.Review);
+db.Review.belongsTo(db.User);
 
 // { instructor, lecture, book, course} : Comment = 1 : N
 db.Instructor.hasMany(db.Comment);
@@ -135,33 +139,7 @@ db.Lecture.hasMany(db.Comment);
 db.Comment.belongsTo(db.Lecture);
 db.Course.hasMany(db.Comment);
 db.Comment.belongsTo(db.Course);
-
 db.User.hasMany(db.Comment);
 db.Comment.belongsTo(db.User);
-
-// course : lecture = N : M
-// db.Course.belongsToMany(db.Lecture, { through: 'CourseLecture' });
-// db.Lecture.belongsToMany(db.Course, { through: 'CourseLecture' });
-
-// instructor : topic = N : M
-// db.InstructorTopic = require('./instructors_topic')(sequelize, Sequelize);
-// db.InstructorTopic.belongsTo(db.Instructor);
-// db.InstructorTopic.belongsTo(db.Topic);
-
-// db.LectureTopic = require('./lectures_topic')(sequelize, Sequelize);
-// db.LectureTopic.belongsTo(db.Lecture);
-// db.LectureTopic.belongsTo(db.Topic);
-
-// db.LectureInstructor = require('./lectures_instructor')(sequelize, Sequelize);
-// db.LectureInstructor.belongsTo(db.Lecture);
-// db.LectureInstructor.belongsTo(db.Instructor);
-
-// comment : { lecture, instructor, course }  = N : M
-// db.Comment.belongsToMany(db.Lecture, { through: 'CommentLecture' });
-// db.Lecture.belongsToMany(db.Comment, { through: 'CommentLecture' });
-// db.Comment.belongsToMany(db.Instructor, { through: 'CommentInstructor' });
-// db.Instructor.belongsToMany(db.Comment, { through: 'CommentInstructor' });
-// db.Comment.belongsToMany(db.Course, { through: 'CommentCourse' });
-// db.Course.belongsToMany(db.Comment, { through: 'CommentCourse' });
 
 module.exports = db;

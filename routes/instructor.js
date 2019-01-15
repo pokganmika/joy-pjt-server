@@ -5,6 +5,7 @@ var router = express.Router();
 const { Instructor } = require('../models');
 const { Lecture } = require('../models');
 const { Comment } = require('../models');
+const { Review } = require('../models');
 const { User } = require('../models');
 const { Book } = require('../models');
 const { db } = require('../models');
@@ -58,6 +59,11 @@ router.get('/:instructorId', async function (req, res, next) {
     ]
   });
   result['books'] = books;
+
+  const reviews = await Review.findAll({
+    where: { instructor_name: instructorId }
+  });
+  result['reviews'] = reviews;
 
   res.send(result);
 });
