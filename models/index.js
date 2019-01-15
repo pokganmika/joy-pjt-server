@@ -103,8 +103,8 @@ db.Topic.belongsToMany(db.Book, { through: 'BookTopic' });
 
 db.Lecture.belongsToMany(db.Instructor, { through: 'LectureInstructor' });
 db.Instructor.belongsToMany(db.Lecture, { through: 'LectureInstructor' });
-db.Instructor.belongsToMany(db.Book, { through: 'BookLecture' });
 db.Book.belongsToMany(db.Instructor, { through: 'BookLecture' });
+db.Instructor.belongsToMany(db.Book, { through: 'BookLecture' });
 
 // Review
 // db.User.belongsToMany(db.ReviewBook, { through: 'UserReviewBook' });
@@ -131,6 +131,8 @@ db.Course.hasMany(db.Review);
 db.Review.belongsTo(db.Course);
 db.User.hasMany(db.Review);
 db.Review.belongsTo(db.User);
+db.Book.hasMany(db.Review);
+db.Review.belongsTo(db.Book);
 
 // { instructor, lecture, book, course} : Comment = 1 : N
 db.Instructor.hasMany(db.Comment);
@@ -141,5 +143,7 @@ db.Course.hasMany(db.Comment);
 db.Comment.belongsTo(db.Course);
 db.User.hasMany(db.Comment);
 db.Comment.belongsTo(db.User);
+db.Book.hasMany(db.Comment);
+db.Comment.belongsTo(db.Book);
 
 module.exports = db;

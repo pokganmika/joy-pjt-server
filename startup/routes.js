@@ -25,6 +25,7 @@ const bookTopic = require('../routes/bookTopic');
 
 const instructor = require('../routes/instructor');
 const lecture = require('../routes/lecture');
+const book = require('../routes/book');
 
 const api = require('../routes/api');
 // MySQL
@@ -73,6 +74,7 @@ module.exports = function (app) {
 
   app.use('/instructor', instructor);
   app.use('/lecture', lecture);
+  app.use('/book', book);
 
   // MySQL
   app.use('/auth', auth);
