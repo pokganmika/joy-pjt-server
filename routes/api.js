@@ -44,20 +44,22 @@ router.post('/comment/:type/:name', (req, res) => {
     }).then(comments => {
       res.send(comments);
     });
+  } else if (type === 'book') {
+    Comment.create({
+      writer: req.body.writer,
+      content: req.body.content,
+      book_name: name
+    }).then(comment => {
+      res.send(comment);
+    });
   }
-  // .then(comment => {
-  //   if (type === 'instructor') {
-  //     comment.setInstructors([name]);
-  //   } else if (type === 'lecture') {
-  //     comment.setLectures([name]);
-  //   }
-  // });
-
-  // res.send('ok');
 });
 
 router.post('/review/:type/:name', async (req, res) => {
-  const { type, name } = req.params;
+  // const { type, name } = req.params;
+  const name = decodeURIComponent(req.params.name);
+  const type = decodeURIComponent(req.params.type);
+
   console.log('[+] /api/:type/:name', type, name);
 
   console.log(req.body);
@@ -69,14 +71,7 @@ router.post('/review/:type/:name', async (req, res) => {
       instructor_name: name
     });
 
-    const reviews = await Review.findAll({
-      where: {
-        instructor_name: name
-      }
-    });
-    console.log('[+] reviews = ', reviews);
-
-    res.send(reviews);
+    res.send(review);
   } else if (type === 'lecture') {
     const review = await Review.create({
       writer: req.body.writer,
@@ -84,60 +79,22 @@ router.post('/review/:type/:name', async (req, res) => {
       lecture_name: name
     });
 
-    const reviews = await Review.findAll({ where: { lecture_name: name } });
-    console.log('[+] reviews = ', reviews);
+    // const reviews = await Review.findAll({ where: { lecture_name: name } });
+    // console.log('[+] reviews = ', reviews);
 
-    res.send(reviews);
+    res.send(review);
   } else if (type === 'book') {
-  }
-
-  /*
-  if (type === 'instructor') {
-    ReviewInstructor.create({
+    const review = await Review.create({
       writer: req.body.writer,
       review: req.body.review,
-      instructor_name: name
-    }).then(reviewInstructor => {
-      console.log(reviewInstructor);
-      reviewInstructor.addUser(req.body.writer);
+      book_name: name
     });
-  } else if (type === 'lecture') {
-    // ReviewLecture.create({
-    //   writer: req.body.writer,
-    //   review: req.body.review,
-    //   instructor_name: name
-    // }).then(reviewLecture => {
-    //   console.log(reviewLecture);
-    //   reviewLecture.setUsers([req.body.writer]);
-    // });
-    User.findAll({ where: { name: req.body.writer } }).then(user => {
-      user.setReviewLectures([req.body.review]);
-    });
-  }
-*/
 
-  /*
-  if (type === 'instructor') {
-    Instructor.findOne({
-      where: {
-        name: name
-      }
-    }).then(instructor => {
-      console.log(instructor);
-      instructor.addReviewInstructors([req.body.review]);
-    });
-  } else if (type === 'lecture') {
-    Lecture.findOne({
-      where: {
-        name: name
-      }
-    }).then(lecture => {
-      console.log(lecture);
-    });
-  }
-  */
+    // const reviews = await Review.findAll({ where: { lecture_name: name } });
+    // console.log('[+] reviews = ', reviews);
 
-  // res.send('OK');
+    res.send(review);
+  }
 });
 
 module.exports = router;
