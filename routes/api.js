@@ -7,10 +7,19 @@ const { User } = require('../models');
 const { Review } = require('../models');
 const { Instructor } = require('../models');
 const { Lecture } = require('../models');
+const { Book } = require('../models');
 const { ReviewInstructor } = require('../models');
 const { ReviewLecture } = require('../models');
 
 const router = express.Router();
+
+var getReviewAverage = arrays => {
+  let sum = 0;
+  arrays.forEach(array => {
+    sum += array.review;
+  });
+  return sum / arrays.length;
+};
 
 router.get('/users/:id', async (req, res, next) => {
   const user = await User.find({
@@ -71,6 +80,16 @@ router.post('/review/:type/:name', async (req, res) => {
       instructor_name: name
     });
 
+    // Review update of instructor
+    const reviews = await Review.findAll({
+      where: { instructor_name: name }
+    });
+
+    const instructor = await Instructor.findOne({ where: { name: name } });
+    instructor.review = getReviewAverage(reviews);
+    await instructor.save();
+
+    // Return previous review request result.
     res.send(review);
   } else if (type === 'lecture') {
     const review = await Review.create({
@@ -79,9 +98,16 @@ router.post('/review/:type/:name', async (req, res) => {
       lecture_name: name
     });
 
-    // const reviews = await Review.findAll({ where: { lecture_name: name } });
-    // console.log('[+] reviews = ', reviews);
+    // Review update of lecture
+    const reviews = await Review.findAll({
+      where: { lecture_name: name }
+    });
 
+    const lecture = await Lecture.findOne({ where: { name: name } });
+    lecture.review = getReviewAverage(reviews);
+    await lecture.save();
+
+    // Return previous review request result.
     res.send(review);
   } else if (type === 'book') {
     const review = await Review.create({
@@ -90,8 +116,16 @@ router.post('/review/:type/:name', async (req, res) => {
       book_name: name
     });
 
-    // const reviews = await Review.findAll({ where: { lecture_name: name } });
-    // console.log('[+] reviews = ', reviews);
+    // Review update of instructor
+    const reviews = await Review.findAll({
+      where: {
+        book_name: name
+      }
+    });
+
+    const book = await Book.findOne({ where: { name: name } });
+    book.review = getReviewAverage(reviews);
+    await book.save();
 
     res.send(review);
   }

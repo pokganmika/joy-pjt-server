@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         allowNull: false,
         defaultValue: 'eng'
-      }
+      },
+      review: { type: DataTypes.INTEGER, allowNull: true }
     },
     {
       timestamp: true,

@@ -20,8 +20,8 @@ router.get('/:instructorId', async function (req, res, next) {
   let result = {};
 
   let instructors = await Instructor.findAll({
-    where: { name: instructorId },
-    attributes: ['name', 'fullName', 'gitHub', 'mainUrl', 'image', 'lang']
+    where: { name: instructorId }
+    // attributes: ['name', 'fullName', 'gitHub', 'mainUrl', 'image', 'lang']
   });
   result['instructor'] = instructors;
 
@@ -39,7 +39,7 @@ router.get('/:instructorId', async function (req, res, next) {
   result['comments'] = comments;
 
   let lectures = await Lecture.findAll({
-    attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
+    // attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
     include: [
       {
         model: Instructor,
@@ -50,7 +50,7 @@ router.get('/:instructorId', async function (req, res, next) {
   result['lectures'] = lectures;
 
   const books = await Book.findAll({
-    attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
+    // attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
     include: [
       {
         model: Instructor,
