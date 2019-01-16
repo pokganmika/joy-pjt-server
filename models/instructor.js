@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 'eng'
       },
-      review: { type: DataTypes.INTEGER, allowNull: true }
+      review: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 }
     },
     {
       timestamp: true,
