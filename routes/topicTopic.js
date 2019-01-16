@@ -11,7 +11,6 @@ router.get('/:topicId', async function (req, res, next) {
   let result = {};
 
   let instructors = await Instructor.findAll({
-    attributes: ['name', 'fullName', 'gitHub', 'mainUrl', 'image', 'lang'],
     include: [
       {
         model: Topic,
@@ -22,7 +21,6 @@ router.get('/:topicId', async function (req, res, next) {
   result['instructors'] = instructors;
 
   let lectures = await Lecture.findAll({
-    attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
     include: [
       {
         model: Topic,
@@ -33,7 +31,6 @@ router.get('/:topicId', async function (req, res, next) {
   result['lectures'] = lectures;
 
   const books = await Book.findAll({
-    attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
     include: [
       {
         model: Topic,
