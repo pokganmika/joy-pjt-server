@@ -12,10 +12,10 @@ const { ReviewLecture } = require('../models');
 
 const router = express.Router();
 
-router.get('/users/:name', async (req, res, next) => {
+router.get('/users/:id', async (req, res, next) => {
   const user = await User.find({
-    attributes: ['name', 'name', 'avatar', 'isAdmin'],
-    where: { name: req.params.name }
+    attributes: ['id', 'name', 'avatar', 'isAdmin'],
+    where: { name: req.params.id }
   });
   console.log(user);
 
