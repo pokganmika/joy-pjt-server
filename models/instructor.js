@@ -8,10 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true
       },
-      fullName: {
-        type: DataTypes.STRING(255),
-        allowNull: true
-      },
+      fullName: { type: DataTypes.STRING(255), allowNull: true },
       gitHub: { type: DataTypes.STRING(1024), allowNull: true },
       mainUrl: { type: DataTypes.STRING(1024), allowNull: true },
       image: { type: DataTypes.STRING(1024), allowNull: true },
@@ -19,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         allowNull: false,
         defaultValue: 'eng'
-      }
+      },
+      review: { type: DataTypes.INTEGER, allowNull: true }
     },
     {
       timestamp: true,

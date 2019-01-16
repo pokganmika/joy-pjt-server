@@ -11,14 +11,12 @@ router.get('/:lectureId', async function (req, res, next) {
   let result = {};
 
   const lecture = await Lecture.findAll({
-    where: { name: lectureId },
-    attributes: ['name', 'url', 'screenshot', 'free', 'lang']
+    where: { name: lectureId }
   });
 
   result['lecture'] = lecture;
 
   const instructor = await Instructor.findAll({
-    attributes: ['name', 'fullName', 'gitHub', 'mainUrl', 'image', 'lang'],
     include: [
       {
         model: Lecture,

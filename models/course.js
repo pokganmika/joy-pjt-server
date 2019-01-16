@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false
       },
-      period: { type: DataTypes.INTEGER, allowNull: false }
+      period: { type: DataTypes.INTEGER, allowNull: false },
+      review: { type: DataTypes.INTEGER, allowNull: false }
     },
     {
       timestamp: true,

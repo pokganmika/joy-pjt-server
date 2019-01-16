@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     'review',
     {
       writer: { type: DataTypes.STRING, allowNull: false },
-      review: { type: DataTypes.TEXT, allowNull: false }
+      review: { type: DataTypes.INTEGER, allowNull: false }
     },
     {
       timestamp: true,
