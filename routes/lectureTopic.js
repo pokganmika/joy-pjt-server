@@ -10,7 +10,7 @@ router.get('/:topicId', async function (req, res, next) {
   let result = {};
 
   Lecture.findAll({
-    attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
+    attributes: ['name', 'url', 'image', 'free', 'lang'],
     include: [
       {
         model: Topic,

@@ -11,7 +11,7 @@ router.get('/:bookId', async function (req, res, next) {
   let result = {};
 
   const books = await Book.findAll({
-    attributes: ['name', 'url', 'screenshot', 'free', 'lang'],
+    attributes: ['name', 'url', 'image', 'free', 'lang'],
     include: [
       {
         model: Topic,
