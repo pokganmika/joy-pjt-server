@@ -6,7 +6,7 @@ var initializeLecture = () => {
     name: 'JavaScript: The Good Parts',
     url:
       'https://www.amazon.com/gp/product/0596517742/ref=dbs_a_def_rwt_bibl_vppi_i0',
-    screenshot:
+    image:
       'https://images-na.ssl-images-amazon.com/images/I/5131OWtQRaL._SX381_BO1,204,203,200_.jpg',
     free: false
   }).then(lecture => {
@@ -18,7 +18,7 @@ var initializeLecture = () => {
     name: 'JavaScript: The Definitive Guide: Activate Your Web Pages',
     url:
       'https://www.amazon.com/gp/product/0596805527/ref=dbs_a_def_rwt_bibl_vppi_i0',
-    screenshot:
+    image:
       'https://images-na.ssl-images-amazon.com/images/I/51WD-F3GobL._SX379_BO1,204,203,200_.jpg',
     free: false
   }).then(lecture => {
@@ -30,7 +30,7 @@ var initializeLecture = () => {
     name: 'JavaScript and JQuery: Interactive Front-End Web Development',
     url:
       'https://www.amazon.com/gp/product/1118531647/ref=dbs_a_def_rwt_bibl_vppi_i2',
-    screenshot:
+    image:
       'https://images-na.ssl-images-amazon.com/images/I/41y31M-zcgL._SX400_BO1,204,203,200_.jpg',
     free: false
   }).then(lecture => {
@@ -42,7 +42,7 @@ var initializeLecture = () => {
     name: 'HTML and CSS: Design and Build Websites',
     url:
       'https://www.amazon.com/gp/product/1118008189/ref=dbs_a_def_rwt_bibl_vppi_i1',
-    screenshot: '',
+    image: '',
     free: false
   }).then(lecture => {
     lecture.setTopics(['html', 'css']);
@@ -53,7 +53,7 @@ var initializeLecture = () => {
     name: 'Eloquent JavaScript',
     url:
       'https://www.amazon.com/gp/product/1593279507/ref=dbs_a_def_rwt_bibl_vppi_i0',
-    screenshot:
+    image:
       'https://images-na.ssl-images-amazon.com/images/I/51I9naPg55L._SX376_BO1,204,203,200_.jpg',
     free: false
   }).then(lecture => {
@@ -65,7 +65,7 @@ var initializeLecture = () => {
     name: "You Don't Know JS: Up & Going",
     url:
       'https://www.amazon.com/gp/product/1491924462/ref=dbs_a_def_rwt_bibl_vppi_i0',
-    screenshot:
+    image:
       'https://images-na.ssl-images-amazon.com/images/I/41FhogvNebL._SX331_BO1,204,203,200_.jpg',
     free: false
   }).then(lecture => {
@@ -77,7 +77,7 @@ var initializeLecture = () => {
     name: "You Don't Know JS: Scope & Closures",
     url:
       'https://www.amazon.com/gp/product/1449335586/ref=dbs_a_def_rwt_bibl_vppi_i1',
-    screenshot:
+    image:
       'https://images-na.ssl-images-amazon.com/images/I/51SqAlfxJiL._SX331_BO1,204,203,200_.jpg',
     free: false
   }).then(lecture => {
@@ -89,7 +89,7 @@ var initializeLecture = () => {
     name: "You Don't Know JS: Async & Performance",
     url:
       'https://www.amazon.com/gp/product/1491904224/ref=dbs_a_def_rwt_bibl_vppi_i2',
-    screenshot:
+    image:
       'https://images-na.ssl-images-amazon.com/images/I/51Kb27EcNPL._SX331_BO1,204,203,200_.jpg',
     free: false
   }).then(lecture => {

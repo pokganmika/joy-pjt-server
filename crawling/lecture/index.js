@@ -73,8 +73,8 @@ var initializeLecture = () => {
   Lecture.create({
     name: '초보자를 위한 바닐라 JavaScript',
     url: 'https://academy.nomadcoders.co/courses/enrolled/435558',
-    // screenshot:      'https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/ySY5plO8Tay6VFtYnfD9',
-    screenshot: generateRandomPicture(),
+    // image:      'https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/ySY5plO8Tay6VFtYnfD9',
+    image: generateRandomPicture(),
     free: true,
     instructor: 'nicolas',
     lang: 'kor'
@@ -86,9 +86,9 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'JavaScript Basics for Beginners',
     url: 'https://codewithmosh.com/courses/enrolled/324741',
-    // screenshot:
+    // image:
     //   'https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/4JkBtVU9QUwcwFCWi3AV',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'mosh'
   }).then(lecture => {
@@ -99,9 +99,9 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'ES6 for everyone!',
     url: 'https://es6.io/',
-    // screenshot:
+    // image:
     //   'https://steemitimages.com/DQmP18L6k8EMHNfsvRNaRFWvka2GnRo8b8CpDuM3hbYGnqp/ff3ywn-1-800x533.jpg',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'wesbos'
   }).then(lecture => {
@@ -112,9 +112,9 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'javascript 30',
     url: 'https://javascript30.com/',
-    // screenshot:
+    // image:
     //   'https://steemitimages.com/DQmP18L6k8EMHNfsvRNaRFWvka2GnRo8b8CpDuM3hbYGnqp/ff3ywn-1-800x533.jpg',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'wesbos'
   }).then(lecture => {
@@ -125,9 +125,9 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'Modern JavaScript',
     url: 'https://tylermcginnis.com/courses/react-fundamentals-udacity/',
-    // screenshot:
+    // image:
     //   'http://www.ddaily.co.kr/data/photos/20150313/art_1427325311.jpg',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: true,
     instructor: 'tyler'
   }).then(lecture => {
@@ -138,9 +138,9 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'Node.js 교과서',
     url: 'https://www.inflearn.com/course/node-js-%EA%B5%90%EA%B3%BC%EC%84%9C/',
-    // screenshot:
+    // image:
     //   'https://mygaming.co.za/news/wp-content/uploads/2016/12/Code.jpg',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: true,
     instructor: 'zerocho',
     lang: 'kor'
@@ -152,7 +152,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'Mastering React',
     url: 'https://codewithmosh.com/p/mastering-react',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'mosh',
     lang: 'eng'
@@ -164,7 +164,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'The Complete Node.js Course',
     url: 'https://codewithmosh.com/p/the-complete-node-js-course',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'mosh',
     lang: 'eng'
@@ -177,7 +177,7 @@ var initializeLecture = () => {
     name: '[초급 풀스택] 유튜브 클론 코딩',
     url:
       'https://academy.nomadcoders.co/p/javascript-fullstack-from-zero-to-hero',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'nicolas',
     lang: 'kor'
@@ -190,7 +190,7 @@ var initializeLecture = () => {
     name: '[JS 풀스택] 우버 클론 코딩',
     url:
       'https://academy.nomadcoders.co/p/nuber-fullstack-javascript-graphql-course',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'nicolas',
     lang: ''
@@ -210,7 +210,7 @@ var initializeLecture = () => {
     name: '초보자를 위한 바닐라 JavaScript',
     url:
       'https://academy.nomadcoders.co/p/javascript-basics-for-absolute-beginners-kr',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'nicolas',
     lang: 'kor'
@@ -222,7 +222,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'React Fundamentals',
     url: 'https://learn.tylermcginnis.com/courses/enrolled/50507',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'tyler'
   }).then(lecture => {
@@ -233,7 +233,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'redux',
     url: 'https://learn.tylermcginnis.com/courses/enrolled/294390',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'tyler'
   }).then(lecture => {
@@ -244,7 +244,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'React Router',
     url: 'https://learn.tylermcginnis.com/courses/enrolled/147194',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'tyler'
   }).then(lecture => {
@@ -255,7 +255,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'React Native (Udacity)',
     url: 'https://learn.tylermcginnis.com/courses/enrolled/336438',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'tyler',
     lang: ''
@@ -267,7 +267,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'React Fundamentals (Udacity)',
     url: 'https://learn.tylermcginnis.com/courses/enrolled/336610',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'tyler',
     lang: ''
@@ -279,7 +279,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'CSS GRID',
     url: 'https://cssgrid.io/',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'wesbos'
   }).then(lecture => {
@@ -290,7 +290,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'Learn node',
     url: 'https://learnnode.com/',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'wesbos',
     lang: ''
@@ -302,7 +302,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'Learn Redux',
     url: 'https://learnredux.com/',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'wesbos'
   }).then(lecture => {
@@ -313,7 +313,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'Modern React with Redux [2019 Update]',
     url: 'https://www.udemy.com/react-redux/?couponCode=4MORE1234',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'stephen'
   }).then(lecture => {
@@ -324,7 +324,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: "ES6 Javascript: The Complete Developer's Guide",
     url: 'https://www.udemy.com/javascript-es6-tutorial/?couponCode=4MORE1234',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'stephen',
     lang: ''
@@ -336,7 +336,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'Advanced React and Redux: 2018 Edition',
     url: 'https://www.udemy.com/react-redux-tutorial/?couponCode=4MORE1234',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'stephen'
   }).then(lecture => {
@@ -348,7 +348,7 @@ var initializeLecture = () => {
     name: 'GraphQL with React: The Complete Developers Guide',
     url:
       'https://www.udemy.com/graphql-with-react-course/?couponCode=4MORE1234',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'stephen',
     lang: ''
@@ -361,7 +361,7 @@ var initializeLecture = () => {
     name: 'The Coding Interview Bootcamp: Algorithms + Data Structures',
     url:
       'https://www.udemy.com/coding-interview-bootcamp-algorithms-and-data-structure/?couponCode=4more1234',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'stephen'
   }).then(lecture => {
@@ -372,9 +372,9 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'The Node.js Master Class',
     url: 'https://pirple.thinkific.com/courses/the-nodejs-master-class',
-    // screenshot:
+    // image:
     //   'https://s3.amazonaws.com/thinkific-import/116598/iFxOskqYSuy4Ll2AIJOM_node.png',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: false,
     instructor: 'pirple'
   }).then(lecture => {
@@ -385,9 +385,9 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'Getting Started with Redux',
     url: 'https://egghead.io/courses/getting-started-with-redux',
-    // screenshot:
+    // image:
     //   'https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/025/full/EGH_Redux-New.png',
-    screenshot: generateRandomPicture(),
+    image: generateRandomPicture(),
     free: true,
     instructor: 'gaearon'
   }).then(lecture => {
@@ -398,7 +398,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'The Web Developer Bootcamp',
     url: 'https://www.udemy.com/the-web-developer-bootcamp/',
-    screenshot:
+    image:
       'https://udemy-images.udemy.com/course/480x270/625204_436a_2.jpg',
     free: false
   }).then(lecture => {
@@ -409,7 +409,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'The Advanced Web Developer Bootcamp',
     url: 'https://www.udemy.com/the-advanced-web-developer-bootcamp/',
-    screenshot:
+    image:
       'https://udemy-images.udemy.com/course/480x270/1218586_9f86.jpg',
     free: false
   }).then(lecture => {
@@ -420,7 +420,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: 'JavaScript Algorithms and Data Structures Masterclass',
     url: 'https://www.udemy.com/js-algorithms-and-data-structures-masterclass/',
-    screenshot:
+    image:
       'https://udemy-images.udemy.com/course/480x270/1406344_1d65_3.jpg',
     free: false
   }).then(lecture => {
@@ -432,7 +432,7 @@ var initializeLecture = () => {
     name: '자바스크립트로 알아보는 함수형 프로그래밍',
     url:
       'https://www.inflearn.com/course/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/',
-    screenshot:
+    image:
       'https://d81pi4yofp37g.cloudfront.net/wp-content/uploads/functional-programming.png',
     free: false,
     instructor: ''
@@ -444,7 +444,7 @@ var initializeLecture = () => {
   Lecture.create({
     name: '',
     url: '',
-    screenshot: '',
+    image: '',
     free: false,
     instructor: ''
   }).then(lecture => {
