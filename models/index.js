@@ -130,10 +130,17 @@ db.User.hasMany(db.Review);
 db.Review.belongsTo(db.User);
 db.Book.hasMany(db.Review);
 db.Review.belongsTo(db.Book);
+db.Course.hasMany(db.Review);
+db.Review.belongsTo(db.Course);
+
 db.User.hasMany(db.Course);
 db.Course.belongsTo(db.User);
-db.CourseUnit.hasMany(db.Course);
-db.Course.belongsTo(db.Course);
+// db.CourseUnit.hasMany(db.Course);
+// db.Course.belongsTo(db.CourseUnit);
+// db.Course.hasMany(db.CourseUnit);
+// db.CourseUnit.belongsTo(db.Course);
+db.Course.belongsToMany(db.CourseUnit, { through: 'CourseCourseUnit' });
+db.CourseUnit.belongsToMany(db.Course, { through: 'CourseCourseUnit' });
 
 // { instructor, lecture, book, course} : Comment = 1 : N
 db.Instructor.hasMany(db.Comment);

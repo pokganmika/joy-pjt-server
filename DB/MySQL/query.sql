@@ -113,5 +113,7 @@ DROP TABLE UserReviewLecture;
 DROP TABLE reviews;
 DROP TABLE BookReviewBook;
 DROP TABLE UserReviewBook;
+DROP TABLE CourseCourseUnit;
 DROP TABLE courseUnits;
+DROP TABLE courseunits;
 SET foreign_key_checks = 1;
