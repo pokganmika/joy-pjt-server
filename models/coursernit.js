@@ -1,13 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'course',
+    'courseunit',
     {
       name: {
         type: DataTypes.STRING(1000),
         allowNull: false
       },
       category: { type: DataTypes.STRING(255), allowNull: false },
-      month: { type: DataTypes.INTEGER, allowNull: true },
+      step: { type: DataTypes.INTEGER, allowNull: true },
       review: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 }
     },
     {
