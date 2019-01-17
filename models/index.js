@@ -81,17 +81,14 @@ db.User.generateAvatar = async seedForAvatar => {
 // Main subject : lecture, instructor, course
 db.Lecture = require('./lecture')(sequelize, Sequelize);
 db.Instructor = require('./instructor')(sequelize, Sequelize);
-db.Course = require('./course')(sequelize, Sequelize);
 db.Book = require('./book')(sequelize, Sequelize);
 // ETC
 db.Comment = require('./comment')(sequelize, Sequelize);
-db.Hashtag = require('./hashtag')(sequelize, Sequelize);
 db.Topic = require('./topic')(sequelize, Sequelize);
 // Review
 db.Review = require('./review')(sequelize, Sequelize);
-// db.ReviewBook = require('./reviewbook')(sequelize, Sequelize);
-// db.ReviewInstructor = require('./reviewInstructor')(sequelize, Sequelize);
-// db.ReviewLecture = require('./reviewLecture')(sequelize, Sequelize);
+db.Course = require('./course')(sequelize, Sequelize);
+db.CourseUnit = require('./coursernit')(sequelize, Sequelize);
 
 // Topic = { lecture, instructor, course }= N : M
 db.Instructor.belongsToMany(db.Topic, { through: 'InstructorTopic' });
@@ -133,6 +130,10 @@ db.User.hasMany(db.Review);
 db.Review.belongsTo(db.User);
 db.Book.hasMany(db.Review);
 db.Review.belongsTo(db.Book);
+db.User.hasMany(db.Course);
+db.Course.belongsTo(db.User);
+db.CourseUnit.hasMany(db.Course);
+db.Course.belongsTo(db.Course);
 
 // { instructor, lecture, book, course} : Comment = 1 : N
 db.Instructor.hasMany(db.Comment);
