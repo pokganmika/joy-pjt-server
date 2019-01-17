@@ -7,8 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       category: { type: DataTypes.STRING(255), allowNull: false },
-      month: { type: DataTypes.INTEGER, allowNull: true },
-      review: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 }
+      month: { type: DataTypes.INTEGER, allowNull: true }
     },
     {
       timestamp: true,
