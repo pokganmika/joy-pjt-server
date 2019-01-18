@@ -39,4 +39,18 @@ router.get('/:lectureId', async function (req, res, next) {
   res.send(result);
 });
 
+router.post('/', async (req, res, next) => {
+  const { lecture } = req.body;
+
+  const newLecture = await Lecture.create({
+    name: lecture.name,
+    url: lecture.url,
+    image: lecture.image,
+    free: lecture.free,
+    lang: lecture.lang
+  });
+  newLecture.setTopics([lecture.topic]);
+  res.send(newLecture);
+});
+
 module.exports = router;

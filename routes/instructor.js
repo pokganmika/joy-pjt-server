@@ -68,34 +68,19 @@ router.get('/:instructorId', async function (req, res, next) {
   res.send(result);
 });
 
-/*
-    Comment.findAll({
-      where: {
-        instructor_name: instructorId
-      }
-    })
+router.post('/', async (req, res, next) => {
+  const { instructor } = req.body;
 
-      .then(comment => {
-        result['comment'] = comment;
-
-        Lecture.findAll({
-          attributes: ['name', 'url', 'image', 'free', 'lang'],
-          include: [
-            {
-              model: Instructor,
-              where: { name: instructorId }
-            }
-          ]
-        });
-      })
-      .then(lectures => {
-        console.log(lectures);
-        result['lectures'] = lectures;
-
-        res.send(result);
-      });
+  const newInstructor = await Instructor.create({
+    name: instructor.name,
+    fullName: instructor.fullName,
+    mainUrl: instructor.mainUrl,
+    gitHub: instructor.gitHub,
+    image: ''
   });
+
+  newInstructor.setTopics([instructor.topic]);
+  res.send(newInstructor);
 });
-*/
 
 module.exports = router;
