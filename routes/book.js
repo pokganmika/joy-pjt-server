@@ -37,4 +37,19 @@ router.get('/:bookId', async function (req, res, next) {
   res.send(result);
 });
 
+router.post('/', async (req, res, next) => {
+  const { book } = req.body;
+
+  const newBook = await Book.create({
+    name: book.name,
+    url: book.url,
+    image: book.image,
+    free: book.free,
+    lang: book.lang
+  });
+
+  newBook.setTopics([book.topic]);
+  res.send(newBook);
+});
+
 module.exports = router;
