@@ -97,6 +97,8 @@ db.Lecture.belongsToMany(db.Topic, { through: 'LectureTopic' });
 db.Topic.belongsToMany(db.Lecture, { through: 'LectureTopic' });
 db.Book.belongsToMany(db.Topic, { through: 'BookTopic' });
 db.Topic.belongsToMany(db.Book, { through: 'BookTopic' });
+db.Course.belongsToMany(db.Topic, { through: 'CourseTopic' });
+db.Topic.belongsToMany(db.Course, { through: 'CourseTopic' });
 
 db.Lecture.belongsToMany(db.Instructor, { through: 'LectureInstructor' });
 db.Instructor.belongsToMany(db.Lecture, { through: 'LectureInstructor' });

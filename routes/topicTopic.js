@@ -5,6 +5,7 @@ const { Instructor } = require('../models');
 const { Lecture } = require('../models');
 const { Topic } = require('../models');
 const { Book } = require('../models');
+const { Course } = require('../models');
 
 router.get('/:topicId', async function (req, res, next) {
   const { topicId } = req.params;
@@ -39,6 +40,16 @@ router.get('/:topicId', async function (req, res, next) {
     ]
   });
   result['books'] = books;
+
+  const courses = await Course.findAll({
+    include: [
+      {
+        model: Topic,
+        where: { name: topicId }
+      }
+    ]
+  });
+  result['courses'] = courses;
 
   res.send(result);
 });
